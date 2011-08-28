@@ -2,7 +2,12 @@ RDLA::Application.routes.draw do
   
   
 
-  get :jeu, :as => :game, :to => "game#index"
+  devise_for :users
+
+   get :jeu, :as => :game, :to => "game#index"
+  
+  root :to => "home#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
