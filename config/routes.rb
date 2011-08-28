@@ -1,4 +1,8 @@
 RDLA::Application.routes.draw do
+  
+  
+
+  get :jeu, :as => :game, :to => "game#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
