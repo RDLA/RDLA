@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  map_id: 1
+  posx: 1
+  posy: 1
+
+two:
+  name: MyString
+  map_id: 1
+  posx: 1
+  posy: 1
