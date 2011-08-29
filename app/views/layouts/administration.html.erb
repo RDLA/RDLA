@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Administration - RDLA</title>
+  <link  href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css" />
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>  
+</head> 
+<body> 
+  <dl id="menu_admin">
+      
+    <dd><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, :class => :logout %></dd> 
+    <dd><%= link_to "Accueil", admin_root_path%></dd> 
+    <dt>Gestion des données</dt>
+    <dd><%= link_to "Utilisateurs", admin_users_path%></dd> 
+    <dd><%= link_to "Plans", admin_maps_path%></dd> 
+    
+  </dl> 
+    <div id="content_admin">
+        <%= yield %>
+    </div>
+ 
+</body> 
+</html> 

@@ -4,7 +4,12 @@ RDLA::Application.routes.draw do
 
   devise_for :users
 
-   get :jeu, :as => :game, :to => "game#index"
+  get :jeu, :as => :game, :to => "game#index"
+   
+  namespace :admin do
+    resources :maps, :users
+    root :to => "home#index"
+  end
   
   root :to => "home#index"
   
