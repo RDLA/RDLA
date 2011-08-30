@@ -1,0 +1,20 @@
+<% content_for :section,  :users %>
+<h1>Liste des comptes utilisateurs</h1>
+
+<div><%= link_to "Nouveau Compte", new_admin_user_path %></div>
+<% unless @users.empty? %>
+<table>
+  <tr>
+    <th>Email</th>
+    <th  style="width:1px;white-space:nowrap;">Actions</th>
+  </tr>
+<% @users.each do |user|  %>
+  <tr class="<%= cycle("darker", "brighter") -%>">
+    <td><%= user.email %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_user_path(user.id) %> - <%= link_to "Supprimer", admin_user_path(user.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+  </tr>
+<%  end %>
+</table>
+<% else %>
+  Aucun utilisateur.
+<% end %>

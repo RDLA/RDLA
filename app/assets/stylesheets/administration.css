@@ -31,12 +31,12 @@
     margin:0;
     padding:5px 0;
 }
-#menu_admin dd:hover
+#menu_admin dd:hover, #menu_admin dd.current
 {
  background:#999;
  
 }
-#menu_admin dd:hover a
+#menu_admin dd:hover a, #menu_admin dd.current ad
 {
  color:white;   
 }
@@ -44,7 +44,10 @@
 {
  color:#000;   
 }
-
+#menu_admin a.logout
+{
+  color:red;
+}
 #content_admin {
      float:left;
      display: inline-block;
@@ -56,7 +59,29 @@
      
      
 }
-#menu_admin a.logout
+
+#content_admin table
 {
-  color:red;
+       border:1px solid #AAA;
+    width:80%;
+    margin: auto;
+    border-collapse: collapse;
+        box-shadow: 0 0 25px #000;
+}
+#content_admin th
+{
+    background:#999;
+}
+
+#content_admin tr.darker
+{
+    background: #CCC;
+}
+#content_admin tr.brighter
+{
+    background: #EEE;
+}
+#content_admin td
+{
+    border:1px solid #AAA;
 }

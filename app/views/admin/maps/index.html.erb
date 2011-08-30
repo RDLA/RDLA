@@ -1,0 +1,21 @@
+<% content_for :section, :maps %>
+<h1>Liste des plans de jeux</h1>
+
+
+<div><%= link_to "Nouveau Plan", new_admin_map_path %></div>
+<% unless @maps.empty? %>
+<table>
+  <tr>
+    <th>Nom</th>
+    <th style="width:1px;white-space:nowrap;">Actions</th>
+  </tr>
+<% @maps.each do |map|  %>
+  <tr  class="<%= cycle("darker", "brighter") -%>">
+    <td><%= map.name %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_map_path(map.id) %> - <%= link_to "Supprimer", admin_map_path(map.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+  </tr>
+<%  end %>
+</table>
+<% else %>
+  Aucun plan.
+<% end %>

@@ -1,0 +1,5 @@
+<% content_for :section, :users %>
+<h1>Edition du compte <%= @user.email %></h1>
+<%= form_for @user, :as => :user, :url => admin_user_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :button => 'Modifier'} %>
+<% end %>

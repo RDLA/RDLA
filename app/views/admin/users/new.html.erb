@@ -1,0 +1,5 @@
+<% content_for :section, :users %>
+<h1>Nouveau compte</h1>
+<%= form_for @user, :as => :user, :url => admin_users_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :button => 'Créer'} %>
+<% end %>

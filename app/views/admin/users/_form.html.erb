@@ -1,0 +1,27 @@
+<% #locals: f and button %>
+<% if f.object.errors.any? %>  
+  <div id="errorExplanation">  
+    <p><%= pluralize(f.object.errors.count, "erreur") %> a été rencontrée:</p>  
+    <dl>  
+    <% f.object.errors.full_messages.each do |msg| %>  
+      <dt><%= msg %></dt>  
+    <% end %>  
+    </dl>  
+  </div>  
+  <% end %>  
+
+<p>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email %>
+</p>
+<p>
+  <%= f.label :password, "Mot de passe" %>
+  <%= f.password_field :password %>
+</p>
+<p>
+  <%= f.label :password_confirmation, "Confirmation du mot de passe" %>
+  <%= f.password_field :password_confirmation %>
+</p>
+<p>
+  <%= f.submit :value => button %>
+</p>
