@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  category: 
+  priority: 
+  user_id: 
+  message: MyText
+
+two:
+  category: 
+  priority: 
+  user_id: 
+  message: MyText

@@ -7,7 +7,7 @@ RDLA::Application.routes.draw do
   get :jeu, :as => :game, :to => "game#index"
    
   namespace :admin do
-    resources :maps, :users, :players
+    resources :maps, :users, :players, :feedbacks
     root :to => "home#index"
   end
   

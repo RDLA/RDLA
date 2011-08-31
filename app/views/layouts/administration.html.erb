@@ -13,6 +13,7 @@
     
     <dd><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, :class => :logout %></dd> 
     <dd <%= "class='current'" if (yield :section) == 'home' %>><%= link_to "Accueil", admin_root_path%></dd> 
+    <dd <%= "class='current'" if (yield :section) == 'feedbacks' %>><%= link_to "Feedback", admin_feedbacks_path%></dd> 
     <dt>Gestion des données</dt>
     <dd <%= "class='current'" if (yield :section) == 'users' %>><%= link_to "Comptes", admin_users_path%></dd> 
     <dd <%= "class='current'" if (yield :section) == 'maps' %>><%= link_to "Plans", admin_maps_path%></dd> 

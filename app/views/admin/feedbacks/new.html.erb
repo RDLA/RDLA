@@ -1,0 +1,5 @@
+<% content_for :section, :feedbacks %>
+<h1>Nouveau feedback</h1>
+<%= form_for @feedback, :as => :feedback, :url => admin_feedbacks_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :button => 'Créer'} %>
+<% end %>

@@ -1,0 +1,39 @@
+<% #locals: f and button %>
+<% if f.object.errors.any? %>  
+  <div id="errorExplanation">  
+    <p><%= pluralize(f.object.errors.count, "erreur") %> a été rencontrée:</p>  
+    <dl>  
+    <% f.object.errors.full_messages.each do |msg| %>  
+      <dt><%= msg %></dt>  
+    <% end %>  
+    </dl>  
+  </div>  
+  <% end %>  
+
+<p>
+  <%= f.label :category, "Catégorie" %>
+  <%= f.select :category, options_for_select([["Bug",'bug'],["Implémentation",'feature']],@feedback.category) %>
+</p>
+<p>
+  <%= f.label :priority, "Priorité" %>
+  <%= f.select :priority, options_for_select(0..10,@feedback.priority) %>  
+</p>
+<p>
+  <%= f.label :subject, "Sujet" %>
+  <%= f.text_field :subject  %>  
+</p>
+<p>
+  <%= f.label :user_id, "Propriétaire" %>
+  <%= f.select :user_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.user_id) %>
+</p>
+<p>
+  <%= f.label :message, "Message" %>
+  <%= f.text_area :message %>
+</p>
+<p>
+  <%= f.label :status, "Statut" %>
+  <%= f.select :status, options_for_select([["En attente",'waiting'],["En cours",'in_process'],["Realisé",'complete']],@feedback.status) %>
+</p>
+<p>
+  <%= f.submit :value => button %>
+</p>
