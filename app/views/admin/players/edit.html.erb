@@ -1,0 +1,5 @@
+<% content_for :section, :players %>
+<h1>Edition du personnage <%= @player.name %></h1>
+<%= form_for @player, :as => :player, :url => admin_player_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :button => 'Modifier'} %>
+<% end %>

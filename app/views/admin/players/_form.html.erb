@@ -1,0 +1,34 @@
+<% #locals: f and button %>
+<% if f.object.errors.any? %>  
+  <div id="errorExplanation">  
+    <p><%= pluralize(f.object.errors.count, "erreur") %> a été rencontrée:</p>  
+    <dl>  
+    <% f.object.errors.full_messages.each do |msg| %>  
+      <dt><%= msg %></dt>  
+    <% end %>  
+    </dl>  
+  </div>  
+  <% end %>  
+<p>
+  <%= f.label :user_id, "Propriétaire" %>
+  <%= f.select :user_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @player.user_id) %>
+</p>
+<p>
+  <%= f.label :name, "Nom" %>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :map_id, "Plan" %>
+  <%= f.select :map_id, options_for_select([["Choisir...",nil]]+@maps.collect {|map| [map.name,map.id]}, @player.map_id) %>
+</p>
+<p>
+  <%= f.label :posx, "Position X" %>
+  <%= f.number_field :posx, :step => 1, :value => 0 %>
+</p>
+<p>
+  <%= f.label :posy, "Position Y" %>
+  <%= f.number_field :posy, :step => 1, :value => 0 %>
+</p>
+<p>
+  <%= f.submit :value => button %>
+</p>

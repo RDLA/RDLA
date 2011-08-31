@@ -7,6 +7,9 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :map_id
       t.integer :posx
       t.integer :posy
+      
+      #User
+      t.integer :user_id
 
       t.timestamps
     end

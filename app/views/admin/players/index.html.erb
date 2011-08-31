@@ -1,0 +1,24 @@
+<% content_for :section,  :players %>
+<h1>Liste des personnages</h1>
+
+<div><%= link_to "Nouveau Personnage", new_admin_player_path %></div>
+<% unless @players.empty? %>
+<table>
+  <tr>
+    <th>Propriétaire</th>
+    <th>Nom</th>
+    <th>Position</th>
+    <th  style="width:1px;white-space:nowrap;">Actions</th>
+  </tr>
+<% @players.each do |player|  %>
+  <tr class="<%= cycle("darker", "brighter") -%>">
+    <td><%= player.user.email unless player.user.blank? %></td>
+    <td><%= player.name %></td>
+    <td><%= "[#{player.posx};#{player.posx}] #{player.map.name}"  unless player.map.blank? %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_player_path(player.id) %> - <%= link_to "Supprimer", admin_player_path(player.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+  </tr>
+<%  end %>
+</table>
+<% else %>
+  Aucun personnage.
+<% end %>

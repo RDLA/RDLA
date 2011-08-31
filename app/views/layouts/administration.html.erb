@@ -16,7 +16,7 @@
     <dt>Gestion des données</dt>
     <dd <%= "class='current'" if (yield :section) == 'users' %>><%= link_to "Comptes", admin_users_path%></dd> 
     <dd <%= "class='current'" if (yield :section) == 'maps' %>><%= link_to "Plans", admin_maps_path%></dd> 
-    <dd <%= "class='current'" if (yield :section) == 'characters' %>><%= link_to "Personnages", admin_root_path%></dd> 
+    <dd <%= "class='current'" if (yield :section) == 'players' %>><%= link_to "Personnages", admin_players_path%></dd> 
     
   </dl> 
     <div id="content_admin">

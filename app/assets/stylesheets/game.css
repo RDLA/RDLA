@@ -1,0 +1,15 @@
+#map
+{
+    width:550px;
+    height:550px;
+    margin:auto;
+}
+#map div
+{
+    margin:0;padding:0;
+    float:left;
+    width:50px;
+    height:50px;
+    
+    background:url("/assets/fields/grass.png");
+}
