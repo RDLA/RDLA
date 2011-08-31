@@ -3,8 +3,11 @@ class GameController < ApplicationController
   before_filter :get_user
   def index
     #Select Players of User connected
-    @player = @user.players.first
-    @map = @player.map
+    @player_connected = @user.players.first
+    @map = @player_connected.map
+    
+    @players = @map.get_players(@player_connected.posx, @player_connected.posx)
+    
   end
   
   private
