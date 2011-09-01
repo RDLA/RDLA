@@ -15,7 +15,7 @@
 <% @feedbacks.each do |feedback|  %>
   <tr class="<%= cycle("darker", "brighter") -%>">
     <td><%= feedback.category %></td>
-    <td><%= feedback.user.email %></td>
+    <td><%= feedback.user.email unless feedback.user.blank? %></td>
     <td><%= feedback.subject %></td>
     <td><%= feedback.priority %></td>
     <td><%= feedback.status %></td>
