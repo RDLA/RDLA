@@ -4,7 +4,7 @@ class Feedback < ActiveRecord::Base
   validates :category, :inclusion => { :in => %w(feature bug todo)}
    
   belongs_to :user
-  belongs_to :worker, :foreign_key => "worker", :class_name => "User" 
+  belongs_to :worker, :foreign_key => "worker_id", :class_name => "User" 
  
   scope :completed, where("status='completed'")
   scope :waiting, where("status='waiting'")
