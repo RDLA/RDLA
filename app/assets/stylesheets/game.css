@@ -1,15 +1,71 @@
+#left_side
+{
+    float:left;
+    width:70%;
+}
+#right_side
+{
+    
+    background:rgba(100,100,200,0.5);
+    float:right;
+    height:100%;
+    overflow: auto;
+    width:25%;
+}
+#onglets
+{
+    
+    float:right;
+    margin:0;
+    
+    padding:0;
+    height:100%;
+}
+#onglets dt.current, #onglets dt:hover
+{
+    background:rgba(0,136,255,1);
+    border-right:  1px solid rgb(100,100,200,0.5);
+    border-bottom: 1px solid rgba(100,100,200,1);
+    border-left: 1px solid rgba(100,100,200,1);
+    border-top: 1px solid rgba(100,100,200,1);
+}
+#onglets dt
+{
+    background:rgba(0,136,255,1);
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    border: 1px solid #999;
+    margin-bottom: 5px;
+    text-align:center;
+    line-height: 3em;
+}
+#character_name
+{
+    text-align: center;
+}
 #map
 {
-    width:550px;
-    height:550px;
+    width:770px;
+    height:770px;
     margin:auto;
 }
 #map div
 {
     margin:0;padding:0;
     float:left;
-    width:50px;
-    height:50px;
+    width:70px;
+    height:70px;
     text-align:center;
     background:url("/assets/fields/grass.png");
+}
+#chat
+{
+    position:absolute;
+    bottom:0;
+    left: 0;
+    width: 50%;
+    background:rgba(100,100,200,0.5);
+    
+    height:2em;
 }

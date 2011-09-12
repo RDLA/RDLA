@@ -1,10 +1,26 @@
-<h1><%= @player_connected.name %></h1>
-<div id="map">
-  <% ((@player_connected.posy-5)..(@player_connected.posy+5)).to_a.reverse.each do|y| %>
-    <% ((@player_connected.posx-5)..(@player_connected.posx+5)).each do|x| %>
-      <div>
-        <%= "X" unless @players["#{x};#{y}"].blank? %>
-      </div>
+<div id="left_side">
+  <div id="map">
+    <% ((@player_connected.posy-5)..(@player_connected.posy+5)).to_a.reverse.each do|y| %>
+      <% ((@player_connected.posx-5)..(@player_connected.posx+5)).each do|x| %>
+        <div>
+          <% unless @players["#{x};#{y}"].blank? %>
+            <% player = @players["#{x};#{y}"] %>
+            <%= image_tag("/assets/icons/rabbit.png", :title => player.name) %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div id="chat">
+    
+  </div>
 </div>
+<div id="right_side">
+ 
+  <h2 id="character_name"><%= @player_connected.name %></h2>
+</div>
+ <dl id="onglets">
+    <dt class="current">Ong. 1</dt>
+    <dt>Ong. 2</dt>
+    <dt>Ong. 3</dt>
+  </dl>
