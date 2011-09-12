@@ -12,7 +12,7 @@
 
 <p>
   <%= f.label :category, "Catégorie" %>
-  <%= f.select :category, options_for_select([["Bug",'bug'],["Implémentation",'feature']],@feedback.category) %>
+  <%= f.select :category, options_for_select([["Bug",'bug'],["Implémentation",'feature'],["Préparation",'todo']],@feedback.category) %>
 </p>
 <p>
   <%= f.label :priority, "Priorité" %>
@@ -32,7 +32,7 @@
 </p>
 <p>
   <%= f.label :status, "Statut" %>
-  <%= f.select :status, options_for_select([["En attente",'waiting'],["En cours",'in_process'],["Realisé",'complete']],@feedback.status) %>
+  <%= f.select :status, options_for_select([["En attente",'waiting'],["En cours",'in_process'],["Realisé",'completed']],@feedback.status) %>
 </p>
 <p>
   <%= f.submit :value => button %>

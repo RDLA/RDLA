@@ -6,6 +6,13 @@
 #  - Tsutomu Kuroda - http://github.com/kuroda (t-kuroda@oiax.jp)
 
 fr:
+  waiting: "En attente"
+  completed: "Terminé"
+  in_process: "En cours"
+  feature: "Implémentation"
+  bug: "Bug"
+  todo: "Préparation"
+  
   date:
     formats:
       default: "%d/%m/%Y"

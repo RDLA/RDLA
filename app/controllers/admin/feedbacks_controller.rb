@@ -1,9 +1,10 @@
 #encoding: utf-8
 class Admin::FeedbacksController < Admin::AreaController
   before_filter :find_feedback, :only => [:destroy, :update, :edit]
-  before_filter :find_all_users, :only => [:edit, :new]
+  before_filter :find_all_users, :only => [:edit, :new, :update]
   def index
-    @feedbacks = Feedback.order("priority DESC")
+    @feedbacks = Feedback.not_completed.order("priority DESC")
+    @feedbacks_completed = Feedback.completed
   end
   def new
     @feedback = Feedback.new
@@ -44,6 +45,6 @@ class Admin::FeedbacksController < Admin::AreaController
     @feedback = Feedback.find params[:id]
   end
     def find_all_users
-    @users = User.all
+      @users = User.all
   end
 end
