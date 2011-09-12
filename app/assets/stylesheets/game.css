@@ -5,10 +5,11 @@ body
 }
 #right_side, #onglets dt.current, #onglets dt:hover,#onglets dt
 {
-  -webkit-border-image: url(/assets/wood.png) 50 50 50 50 round round;  
+/*  -webkit-border-image: url(/assets/wood.png) 50 50 50 50 round round;  
   -o-border-image: url(/assets/wood.png) 50 50 50 50 round round;  
   -moz-border-image: url(/assets/wood.png) 50 50 50 50 round round;  
-  border-image: url(/assets/wood.png) 50 50 50 50 round round;  
+  border-image: url(/assets/wood.png) 50 50 50 50 round round;  */
+  box-shadow: 0 0 25px #000;
 }
 #left_side
 {
@@ -64,6 +65,7 @@ body
 }
 #map
 {
+      box-shadow: 0 0 25px #000;
     width:770px;
     height:770px;
     margin:auto;
