@@ -27,12 +27,24 @@
   <%= f.select :user_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.user_id) %>
 </p>
 <p>
+  <%= f.label :worker, "Assignation" %>
+  <%= f.select :worker, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.worker) %>
+</p>
+<p>
   <%= f.label :message, "Message" %>
   <%= f.text_area :message %>
 </p>
 <p>
   <%= f.label :status, "Statut" %>
   <%= f.select :status, options_for_select([["En attente",'waiting'],["En cours",'in_process'],["Realisé",'completed']],@feedback.status) %>
+</p>
+<p>
+  <%= f.label :sprint, "Sprint" %>
+  <%= f.number_field :sprint, :min => 0, :step => 1 %>
+</p>
+<p>
+  <%= f.label :effort, "Effort" %>
+  <%= f.number_field :effort, :min => 0, :step => 0.5 %>
 </p>
 <p>
   <%= f.submit :value => button %>

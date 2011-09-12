@@ -1,51 +1,80 @@
 <% content_for :section,  :feedbacks %>
 <h1>Liste des feedbacks</h1>
-
 <div><%= link_to "Nouveau Feedback", new_admin_feedback_path %></div>
-<% unless @feedbacks.empty? %>
+
+  <% unless @feedbacks_process.empty? %>
+  <h2>En cours</h2>
 <table>
   <tr>
+    
     <th>Catégorie</th>
-    <th>Auteur</th>
+    <th>Assigné à </th>
     <th>Sujet</th>
     <th>Priorité</th>
-    <th>Statut</th>
+    <th>Mise à jour</th>
     <th  style="width:1px;white-space:nowrap;">Actions</th>
   </tr>
-<% @feedbacks.each do |feedback|  %>
+<% @feedbacks_process.each do |feedback|  %>
   <tr class="<%= cycle("darker", "brighter") -%>">
+    
     <td><%= t feedback.category %></td>
-    <td><%= feedback.user.email unless feedback.user.blank? %></td>
+    <td><%= feedback.worker.email unless feedback.worker.blank? %></td>
     <td><%= feedback.subject %></td>
     <td><%= feedback.priority %></td>
-    <td><%= t feedback.status %></td>
+    <td><%= l feedback.updated_at, :format => :short %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_feedback_path(feedback.id) %> - <%= link_to "Supprimer", admin_feedback_path(feedback.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+  </tr>
+<%  end %>
+</table>
+<% end %>
+<h2>En attente</h2>
+
+<% unless @feedbacks_waiting.empty? %>
+<table>
+  <tr>
+    
+    <th>Catégorie</th>
+    <th>Assigné à </th>
+    <th>Sujet</th>
+    <th>Priorité</th>
+    <th>Mise à jour</th>
+    <th  style="width:1px;white-space:nowrap;">Actions</th>
+  </tr>
+<% @feedbacks_waiting.each do |feedback|  %>
+  <tr class="<%= cycle("darker", "brighter") -%>">
+    
+    <td><%= t feedback.category %></td>
+    <td><%= feedback.worker.email unless feedback.worker.blank? %></td>
+    <td><%= feedback.subject %></td>
+    <td><%= feedback.priority %></td>
+    <td><%= l feedback.updated_at, :format => :short %></td>
     <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_feedback_path(feedback.id) %> - <%= link_to "Supprimer", admin_feedback_path(feedback.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>
 <%  end %>
 </table>
 <% else %>
-  Aucun feedback.
+  Aucun feedback en attente.
 <% end %>
   
   
-  <h2>Archives</h2>
+  <h2>Terminé</h2>
   <% unless @feedbacks_completed.empty? %>
 <table>
   <tr>
     <th>Catégorie</th>
-    <th>Auteur</th>
+    <th>Assigné à </th>
     <th>Sujet</th>
     <th>Priorité</th>
-    <th>Statut</th>
+    <th>Mise à jour</th>
     <th  style="width:1px;white-space:nowrap;">Actions</th>
   </tr>
 <% @feedbacks_completed.each do |feedback|  %>
   <tr class="<%= cycle("darker", "brighter") -%>">
     <td><%= t feedback.category %></td>
-    <td><%= feedback.user.email unless feedback.user.blank? %></td>
+    <td><%= feedback.worker.email unless feedback.worker.blank? %></td>
     <td><%= feedback.subject %></td>
     <td><%= feedback.priority %></td>
-    <td><%= t feedback.status %></td>
+    <td><%= l feedback.updated_at, :format => :short %></td>
     <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_feedback_path(feedback.id) %> - <%= link_to "Supprimer", admin_feedback_path(feedback.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>
 <%  end %>

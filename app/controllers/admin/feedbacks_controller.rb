@@ -3,8 +3,9 @@ class Admin::FeedbacksController < Admin::AreaController
   before_filter :find_feedback, :only => [:destroy, :update, :edit]
   before_filter :find_all_users, :only => [:edit, :new, :update]
   def index
-    @feedbacks = Feedback.not_completed.order("priority DESC")
-    @feedbacks_completed = Feedback.completed
+    @feedbacks_waiting = Feedback.waiting.order("priority DESC, updated_at DESC")
+    @feedbacks_completed = Feedback.completed.order("priority DESC, updated_at DESC")
+    @feedbacks_process = Feedback.in_process.order("priority DESC, updated_at DESC")
   end
   def new
     @feedback = Feedback.new
