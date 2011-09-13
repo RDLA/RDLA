@@ -28,7 +28,7 @@
 </p>
 <p>
   <%= f.label :worker_id, "Assignation" %>
-  <%= f.select :worker_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.worker) %>
+  <%= f.select :worker_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.worker_id) %>
 </p>
 <p>
   <%= f.label :message, "Message" %>
