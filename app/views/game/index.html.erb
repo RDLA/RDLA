@@ -2,12 +2,17 @@
   <div id="map">
     <% ((@player_connected.posy-5)..(@player_connected.posy+5)).to_a.reverse.each do|y| %>
       <% ((@player_connected.posx-5)..(@player_connected.posx+5)).each do|x| %>
-        <div>
+        
           <% unless @players["#{x};#{y}"].blank? %>
             <% player = @players["#{x};#{y}"] %>
+            <div id="player<%= player.id %>">
+            
             <%= image_tag("/assets/icons/rabbit.png", :title => player.name) %>
+           </div>
+          <% else %>
+          <div id="pos<%= "#{x}I#{y}" %>"></div>
           <% end %>
-        </div>
+       
       <% end %>
     <% end %>
   </div>

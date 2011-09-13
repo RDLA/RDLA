@@ -65,6 +65,7 @@
 }
 #map
 {
+    background:white;
     box-shadow: 0 0 25px #000;
     width:770px;
     height:770px;
