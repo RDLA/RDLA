@@ -18,23 +18,44 @@ posy = null;
 
 function show_path_to(destx,desty)
 {
+
     // Show path to the specified destination using a* algorithm
+    grid = new Array(Math.sqrt($("#map div").length));
+    for(i = 0; i<grid.length ; i++)
+        {
+            grid[i] = new Array(Math.sqrt($("#map div").length));
+        }
+    x = 0;
+    y = 0;
     
-    $("#map div").each(function(){ $(this).css("opacity","1")});
+    $("#map div").each(function(){ 
+        $(this).css("opacity","1")
+      
+        if(x == grid.length)
+            {
+               x=0;
+               y++;
+            }
+              
+        grid[x][y] = 0;
+       
+        x++;
+        });
     
     fillPos(); //Get position of current player
     $("#chat").html(destx+"/"+desty);
-    position = "#pos"+destx+"I"+desty;
-     
-     $(position).css("opacity","0.8");
-//    $.getJSON("/player/path_to.json",function(data){
-//               /* data structure: { 1:{posx:0,posy:1}, 2:{posx:1,posy:5}} Apply opacity to all position */
-//               $.each(data, function(key, val) {
-//                   position = "#pos"+val.posx+"I"+val.posy;
-//                   $(position).attr("style","opacity:0.5");
-//               });
-//               
-//           });
+        var graph = new Graph(grid);
+    
+    var offsetX = Math.min(posx,destx)*-1;
+    var offsetY = Math.min(posy,desty)*-1;
+    var start = graph.nodes[posx+offsetX][posy+offsetY];
+    var end = graph.nodes[destx+offsetX][desty+offsetY];
+    var result = astar.search(graph.nodes, start, end);
+    for(var i = 0; i < result.length ; i++)
+    {
+         $("#pos"+(result[i].x-offsetX)+"I"+(posy+result[i].y-offsetY)).attr("style","opacity:0.5");
+    }        
+
 }
 function fillPos()
 {
