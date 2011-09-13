@@ -30,30 +30,44 @@ function show_path_to(destx,desty)
     
     $("#map div").each(function(){ 
         $(this).css("opacity","1")
-      
+        
         if(x == grid.length)
             {
                x=0;
                y++;
             }
-              
-        grid[x][y] = 0;
+            
+        if($(this).children().attr("src") != null)
+            {
+            
+            grid[x][y] = 1;
+            }
+        else
+            {
+            grid[x][y] = 0;        
+            }
+           
+        
        
         x++;
         });
-    
+        
     fillPos(); //Get position of current player
-    $("#chat").html(destx+"/"+desty);
+   
         var graph = new Graph(grid);
     
-    var offsetX = Math.min(posx,destx)*-1;
-    var offsetY = Math.min(posy,desty)*-1;
+    var offsetX = (posx-5)*-1;
+    var offsetY = (posy-5)*-1;
+    
     var start = graph.nodes[posx+offsetX][posy+offsetY];
+    
     var end = graph.nodes[destx+offsetX][desty+offsetY];
+    
     var result = astar.search(graph.nodes, start, end);
+     
     for(var i = 0; i < result.length ; i++)
     {
-         $("#pos"+(result[i].x-offsetX)+"I"+(posy+result[i].y-offsetY)).attr("style","opacity:0.8");
+         $("#pos"+(result[i].pos.x-offsetX)+"I"+(posy+result[i].pos.y-offsetY)).attr("style","opacity:0.8");
     }        
 
 }
