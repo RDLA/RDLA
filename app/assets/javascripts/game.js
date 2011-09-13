@@ -53,7 +53,7 @@ function show_path_to(destx,desty)
     var result = astar.search(graph.nodes, start, end);
     for(var i = 0; i < result.length ; i++)
     {
-         $("#pos"+(result[i].x-offsetX)+"I"+(posy+result[i].y-offsetY)).attr("style","opacity:0.5");
+         $("#pos"+(result[i].x-offsetX)+"I"+(posy+result[i].y-offsetY)).attr("style","opacity:0.8");
     }        
 
 }
