@@ -1,6 +1,6 @@
 html, body{ padding:0; margin:0; height:100%;}
 body
 {
-    background:url(/assets/backtest.jpg) right;
+    background:url(/assets/backtest.jpg) right fixed;
     font-family: 'Nunito', serif;
 }
