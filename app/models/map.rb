@@ -7,6 +7,7 @@ class Map < ActiveRecord::Base
   has_many :players
   
   def get_players(centreX, centreY, zone = 5)
+    
     @positions = Hash.new
     #Get all player in a specified area of the current map
     self.players.where("posx BETWEEN ? and ? 

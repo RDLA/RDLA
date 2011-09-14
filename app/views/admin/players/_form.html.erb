@@ -23,11 +23,12 @@
 </p>
 <p>
   <%= f.label :posx, "Position X" %>
-  <%= f.number_field :posx, :step => 1, :value => 0 %>
+  <%= f.number_field :posx, :step => 1 %>
 </p>
 <p>
   <%= f.label :posy, "Position Y" %>
-  <%= f.number_field :posy, :step => 1, :value => 0 %>
+
+  <%= f.number_field :posy, :step => 1 %>
 </p>
 <p>
   <%= f.submit :value => button %>

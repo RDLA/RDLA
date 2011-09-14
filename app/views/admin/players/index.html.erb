@@ -14,7 +14,7 @@
   <tr class="<%= cycle("darker", "brighter") -%>">
     <td><%= player.user.email unless player.user.blank? %></td>
     <td><%= player.name %></td>
-    <td><%= "[#{player.posx};#{player.posx}] #{player.map.name}"  unless player.map.blank? %></td>
+    <td><%= "[#{player.posx};#{player.posy}] #{player.map.name}"  unless player.map.blank? %></td>
     <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_player_path(player.id) %> - <%= link_to "Supprimer", admin_player_path(player.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>
 <%  end %>

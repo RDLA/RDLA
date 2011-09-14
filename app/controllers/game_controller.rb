@@ -12,7 +12,7 @@ class GameController < ApplicationController
      
     @map = @player_connected.map
     
-    @players = @map.get_players(@player_connected.posx, @player_connected.posx)
+    @players = @map.get_players(@player_connected.posx, @player_connected.posy)
     
   end
   

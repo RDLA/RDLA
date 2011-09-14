@@ -79,6 +79,7 @@
     height:70px;
     text-align:center;
     background:url("/assets/fields/grass.png");
+    cursor:pointer;
 }
 #chat
 {

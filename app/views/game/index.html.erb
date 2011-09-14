@@ -1,20 +1,6 @@
 <div id="left_side">
   <div id="map">
-    <% ((@player_connected.posy-5)..(@player_connected.posy+5)).to_a.reverse.each do|y| %>
-      <% ((@player_connected.posx-5)..(@player_connected.posx+5)).each do|x| %>
-        
-          <% unless @players["#{x};#{y}"].blank? %>
-            <% player = @players["#{x};#{y}"] %>
-            <div id="player<%= player.id %>">
-            
-            <%= image_tag("/assets/icons/rabbit.png", :title => player.name) %>
-           </div>
-          <% else %>
-          <div id="pos<%= "#{x}I#{y}" %>"></div>
-          <% end %>
-       
-      <% end %>
-    <% end %>
+   <%= render :partial => "map", :locals => { :players => @players, :player_connected => @player_connected}  %>
   </div>
   <div id="chat">
     Chat : <%= text_field_tag :chat_text,"" ,:style => "width:70%;"  %>
