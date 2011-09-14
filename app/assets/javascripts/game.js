@@ -10,16 +10,13 @@ $("#map div").mouseover(function(){
     
 });
 
-
+generate_grid();
 });
 
 posx = null;
 posy = null;
-
-function show_path_to(destx,desty)
+function generate_grid()
 {
-
-    // Show path to the specified destination using a* algorithm
     grid = new Array(Math.sqrt($("#map div").length));
     for(i = 0; i<grid.length ; i++)
         {
@@ -29,7 +26,7 @@ function show_path_to(destx,desty)
     y = 0;
     
     $("#map div").each(function(){ 
-        $(this).css("opacity","1")
+       
         
         if(x == grid.length)
             {
@@ -51,10 +48,17 @@ function show_path_to(destx,desty)
        
         x++;
         });
+}
+
+function show_path_to(destx,desty)
+{
+
+    // Show path to the specified destination using a* algorithm
+    $("#map div").css("opacity","1")
         
     fillPos(); //Get position of current player
    
-        var graph = new Graph(grid);
+    var graph = new Graph(grid);
     
     var offsetX = (posx-5)*-1;
     var offsetY = (posy-5)*-1;
@@ -74,11 +78,7 @@ function show_path_to(destx,desty)
 function fillPos()
 {
     // Get position of the current player
-    if(posx != null && posy != null)
-        {
-            return true;
-        }
-    else
+    if(posx == null || posy == null)
         {
            $.getJSON("/player/current_position.json",function(player){
                posx =  parseInt(player.posx);

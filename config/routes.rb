@@ -8,6 +8,7 @@ RDLA::Application.routes.draw do
   get :jeu, :as => :game, :to => "game#index"
   namespace :player do
     get :current_position
+    put :update_position
   end
   
 
