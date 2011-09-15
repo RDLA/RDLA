@@ -1,6 +1,9 @@
 var posx = null;
 var posy = null;
 $(function(){
+   
+   if(window.location.pathname == '/jeu')
+   {
    $.getJSON("/player/current_position.json",function(player){
               
                posx =  parseInt(player.posx,10);
@@ -9,6 +12,16 @@ $(function(){
                init();
                
            });
+    $("#map div").click(function(){
+  
+   pos = get_div_position(this);
+   if(pos)
+       go_to(pos.x, pos.y);
+       
+   
+    
+});
+   }
 });
 function init()
 {
@@ -23,15 +36,7 @@ function init()
     
 });
 
-$("#map div").click(function(){
-  
-   pos = get_div_position(this);
-   if(pos)
-       go_to(pos.x, pos.y);
-       
-   
-    
-});
+
 
 
 

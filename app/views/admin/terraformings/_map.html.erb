@@ -1,0 +1,14 @@
+<% (posy..(posy+height)).each do|y| %>
+      <% (posx..(posx+width)).each.each do|x| %>
+          
+          <% if fields["#{x};#{y}"].blank?  %>
+              <% css_for_field = "field#{map.default_field_id}" %>
+          <% else %>
+              <% css_for_field = "field#{fields["#{x};#{y}"].field_id}" %>
+          <% end %>
+
+            <div id="pos<%= "#{x}I#{y}" %>" title="<%= "[#{x};#{y}]" %>" class="<%= css_for_field  %>"></div>
+          
+       
+      <% end %>
+    <% end %>

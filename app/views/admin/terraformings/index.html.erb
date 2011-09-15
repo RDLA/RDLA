@@ -4,13 +4,34 @@
   <meta charset="UTF-8">
   <title>Administration - RDLA</title>
   <link  href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" media="screen" href="/player/field_css.css">
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>  
 </head> 
 <body> 
       
-    <%= link_to "Retour Administration", admin_root_path%>
- 
+    
+  <div class="terraforming_page">
+    
+    <div id="map" style="width:<%= 72*(@width+1)  %>px; height:<%= 72*(@height+1)  %>px ">
+    <%= render :partial => "map", :locals => { :posx => @posx, :posy => @posy, :width => @width, :height => @height, :map => @map, :fields => @fields}  %>
+    </div>
+    <div  class="terraforming_option">Plan: <%=  select_tag :map_id, options_for_select(@maps.collect {|map| [map.name,map.id]}, @map.id) %> X: <%= number_field_tag :posx, @posx.to_s, :size => 3 %> Y: <%= number_field_tag :posy, @posy, :size => 3 %> |  Largeur: <%= number_field_tag :width, @width, :size => 3 %> Hauteur:<%= number_field_tag :height, @height, :size => 3 %> | Position curseur: <span id="show_pos">[0;0]</span></div>
+  </div>
+  <div class="terraforming_toolbar">
+    <p>Case sélectionnée: <br /><img id="selectedPicture" src='<%= "#{ASSETS_URL}#{@map.default_field.filename}" %>' /><input type="hidden" id="selectedPictureId" value="<%= @map.default_field.id %>" /><br />
+      
+      <input id="build_all" type="button" value="Colorier toutes les cases visibles" />
+      
+    </p>
+    <hr />
+    <p>Bibliothèque</p>
+    <% @fields_library.each do |field| %>
+      <img src="<%= "#{ASSETS_URL}#{field.filename}" %>" class="field" alt="<%= field.id %>" style="cursor:pointer" />
+    <% end %>
+  </div>
+  
+  <p style="position:fixed;bottom:0;right:5px;background: #900;padding:0.5em;border-radius:15px;"><%= link_to "Retour Administration", admin_root_path,:style => "color:white;text-decoration:none;font-weight:bolder;" %></p>
 </body> 
 </html> 
