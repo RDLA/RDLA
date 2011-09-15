@@ -42,7 +42,9 @@
 }
 #menu_admin dt
 {
- color:#000;   
+ background:#000;
+ color:#FFF;
+ margin: 1em 0;
 }
 #menu_admin a.logout
 {
