@@ -1,21 +1,23 @@
-<% content_for :section, :maps %>
-<h1>Liste des plans de jeux</h1>
+<% content_for :section, :fields %>
+<h1>Liste des Terrains utilisables</h1>
 
 
-<div><%= link_to "Nouveau Plan", new_admin_map_path %></div>
-<% unless @maps.empty? %>
+<div><%= link_to "Nouveau Terrain", new_admin_field_path %></div>
+<% unless @fields.empty? %>
 <table>
   <tr>
-    <th>Nom</th>
+    <th  style="width:1px;white-space:nowrap;">Image</th>
+    <th>Nom image</th>
     <th style="width:1px;white-space:nowrap;">Actions</th>
   </tr>
-<% @maps.each do |map|  %>
+<% @fields.each do |field|  %>
   <tr  class="<%= cycle("darker", "brighter") -%>">
-    <td><%= map.name %></td>
-    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_map_path(map.id) %> - <%= link_to "Supprimer", admin_map_path(map.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+    <td><img src="<%= "#{ASSETS_URL}#{field.filename}" %>" alt="<%= field.filename %>" /></td>
+    <td><%= field.filename %></td>
+    <td style="width:1px;white-space:nowrap;"><%#= link_to "Editer", edit_admin_field_path(field.id) %><%= link_to "Supprimer", admin_field_path(field.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>
 <%  end %>
 </table>
 <% else %>
-  Aucun plan.
+  Aucun terrain
 <% end %>

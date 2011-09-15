@@ -1,7 +1,7 @@
 #encoding: utf-8
 class Admin::FieldsController < Admin::AreaController
   before_filter :find_field, :only => [:destroy, :update, :edit]
-  before_filter :find_all_fields, :only => [:new, :edit, :create, :update]
+  before_filter :find_all_distant_fields, :only => [:new, :edit, :create, :update]
   def index
     @fields = Field.order("created_at DESC")
   end
@@ -43,7 +43,9 @@ class Admin::FieldsController < Admin::AreaController
   def find_field
     @field = Field.find params[:id]
   end
-  def find_all_fields
-    @fields = Field.get_distant_fields_picture
+  def find_all_distant_fields
+    @distant_fields = Field.get_distant_fields_picture
+    fields = Field.all.collect {|f| f.filename}
+    @distant_fields = @distant_fields - fields
   end
 end

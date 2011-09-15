@@ -1,0 +1,3 @@
+<% @fields.each do |field| %>
+.field<%= field.id %>  { background:url("<%= "#{ASSETS_URL}#{field.filename}" %>"); }
+<% end   %>

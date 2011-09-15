@@ -86,3 +86,10 @@
 {
     border:1px solid #AAA;
 }
+
+.admin_field_item
+{
+    float:left;
+    border:1px solid #CCC;
+    margin:5px;
+}

@@ -9,11 +9,16 @@
     </dl>  
   </div>  
   <% end %>  
+<%=  @distant_fields.inspect %>
+<h3>Terrains disponible sur Ftp:</h3>
 
-<%#*<p>%>
-  <%#= f.label :name, "Nom" %>
-  <%#= f.text_field :name %>
-<%#*</p>%>
-<p>
+<% @distant_fields.each do |d_field| %>
+<div class="admin_field_item">
+  <label for="field_filename_<%= d_field.downcase.delete "."  %>"><img src="<%= "#{ASSETS_URL}#{d_field}" %>" alt="<%= d_field %>"  title="<%= d_field %>" /></label><br />
+  <%= radio_button("field", "filename", d_field) %>
+</div>
+<% end %>
+
+<p style="clear:both;">
   <%= f.submit :value => button %>
 </p>

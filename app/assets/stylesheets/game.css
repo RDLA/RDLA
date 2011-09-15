@@ -67,18 +67,17 @@
 {
     background:white;
     box-shadow: 0 0 25px #000;
-    width:770px;
-    height:770px;
+    width:792px;
+    height:792px;
     margin:auto;
 }
 #map div
 {
     margin:0;padding:0;
     float:left;
-    width:70px;
-    height:70px;
+    width:72px;
+    height:72px;
     text-align:center;
-    background:url("/assets/fields/grass.png");
     cursor:pointer;
 }
 #chat

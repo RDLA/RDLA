@@ -9,6 +9,7 @@ RDLA::Application.routes.draw do
   namespace :player do
     get :current_position
     put :update_position
+    get :field_css
   end
   
 

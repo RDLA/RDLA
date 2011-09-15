@@ -1,5 +1,5 @@
 class PlayerController < ApplicationController
-  respond_to :json, :html
+  respond_to :json, :html, :css
   def current_position
     @player = Player.find session[:player_connected].to_i
    
@@ -28,6 +28,10 @@ class PlayerController < ApplicationController
     
     
     
+    render :layout => false
+  end
+  def field_css
+    @fields = Field.all
     render :layout => false
   end
 end
