@@ -1,13 +1,15 @@
 <% ((player_connected.posy-5)..(player_connected.posy+5)).each do|y| %>
       <% ((player_connected.posx-5)..(player_connected.posx+5)).each do|x| %>
         
+          <% css_for_field = "field#{@map.default_field_id}" %>
           <% unless players["#{x};#{y}"].blank? %>
             <% player = players["#{x};#{y}"] %>
-            <div id="player<%= player.id %>">
+            
+            <div id="player<%= player.id %>" class="<%= css_for_field  %>">
             <%= image_tag("/assets/icons/rabbit.png", :title => player.name) %>
            </div>
           <% else %>
-            <div id="pos<%= "#{x}I#{y}" %>" class="field<% @map.default_field unless @map.default_field.blank? %>"></div>
+            <div id="pos<%= "#{x}I#{y}" %>" class="<%= css_for_field  %>"></div>
           <% end %>
        
       <% end %>
