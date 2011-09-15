@@ -13,7 +13,7 @@ RDLA::Application.routes.draw do
   
 
   namespace :admin do
-    resources :maps, :users, :players, :feedbacks
+    resources :maps, :users, :players, :feedbacks, :fields
     root :to => "home#index"
   end
   

@@ -10,6 +10,6 @@
 <body>
 
 <%= yield %>
-
+<p style="position:fixed;bottom:0;right:5px;background: #900;padding:0.5em;"><%= link_to("Administration", admin_root_path,:style => "color:white;text-decoration:none;font-weight:bolder;") if current_user.is_a?(User::Admin)%></p>
 </body>
 </html>
