@@ -25,6 +25,7 @@ class PlayerController < ApplicationController
     
        
     @players =  @player_connected.map.get_players(@player_connected.posx, @player_connected.posy)
+    @fields =  @player_connected.map.get_fields(@player_connected.posx, @player_connected.posy)
     
     
     
