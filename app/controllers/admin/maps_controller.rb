@@ -1,6 +1,7 @@
 #encoding: utf-8
 class Admin::MapsController < Admin::AreaController
   before_filter :find_map, :only => [:destroy, :update, :edit]
+  before_filter :find_all_fields, :only => [:new, :edit, :update, :create]
   def index
     @maps = Map.order("created_at DESC")
   end
@@ -41,5 +42,8 @@ class Admin::MapsController < Admin::AreaController
   private
   def find_map
     @map = Map.find params[:id]
+  end
+  def find_all_fields
+    @fields = Field.all
   end
 end

@@ -1,10 +1,13 @@
 class Map < ActiveRecord::Base
   
-  attr_accessible :name
+  attr_accessible :name, :default_field_id
   
   validates :name, :presence => true, :uniqueness => true
   
   has_many :players
+  
+  belongs_to :default_field, :class_name => 'Field'
+  validates :default_field, :presence => true
   
   def get_players(centreX, centreY, zone = 5)
     
@@ -19,5 +22,11 @@ class Map < ActiveRecord::Base
      end
      @positions
   end
+  def get_fields(centreX, centreY, zone = 5)
+    # TODO: Get all fields in a specified area of the current map
+
+  end
+  
+  
   
 end

@@ -1,4 +1,6 @@
 class Field < ActiveRecord::Base
+  has_many :maps
+  
   require 'open-uri'
   def self.get_distant_fields_picture
     list = open("#{ASSETS_URL}list.php")

@@ -15,5 +15,23 @@
   <%= f.text_field :name %>
 </p>
 <p>
+  <%= f.label :default_field_id, "Terrain par défaut" %>
+  <script type="text/javascript">
+    $(function(){
+       $('#map_default_field_id').change(function() {
+         $('#field_picture').attr('src','<%= ASSETS_URL  %>'+$('#map_default_field_id :selected').text());
+         
+       });
+      
+      
+    })
+  </script>
+  
+  <%= f.select(:default_field_id, options_for_select(@fields.collect {|field| [field.filename,field.id]}, @map.default_field_id) ) %>
+  
+  <br /><img id="field_picture" src="<%= "#{ASSETS_URL}#{@map.default_field.blank? ? @fields.first.filename : @map.default_field.filename}"  %>">
+  
+</p>
+<p>
   <%= f.submit :value => button %>
 </p>

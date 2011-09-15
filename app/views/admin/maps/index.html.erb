@@ -6,11 +6,13 @@
 <% unless @maps.empty? %>
 <table>
   <tr>
+    <th style="width:1px;white-space:nowrap;">Terrain par défaut</th>
     <th>Nom</th>
     <th style="width:1px;white-space:nowrap;">Actions</th>
   </tr>
 <% @maps.each do |map|  %>
   <tr  class="<%= cycle("darker", "brighter") -%>">
+    <td><img src="<%= "#{ASSETS_URL}#{map.default_field.filename}" %>" alt="<%= map.default_field.filename %>" /></td>
     <td><%= map.name %></td>
     <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_map_path(map.id) %> - <%= link_to "Supprimer", admin_map_path(map.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>
