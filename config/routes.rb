@@ -15,9 +15,9 @@ RDLA::Application.routes.draw do
 
   namespace :admin do
     resources :maps, :users, :players, :feedbacks, :fields
-    resources :terraformings, :only => [:index] do
+    resources :terraformings, :only => [:index, :create] do
       collection do
-        post :build_all
+        put :update_position
       end
     end
     root :to => "home#index"
