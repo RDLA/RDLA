@@ -18,6 +18,7 @@ RDLA::Application.routes.draw do
     resources :terraformings, :only => [:index, :create] do
       collection do
         put :update_position
+        put :create_all
       end
     end
     root :to => "home#index"

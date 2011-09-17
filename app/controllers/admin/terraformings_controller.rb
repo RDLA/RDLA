@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Admin::TerraformingsController < Admin::AreaController
-  before_filter :get_session, :only => [:index, :create]
+  before_filter :get_session, :only => [:index, :create, :create_all]
   layout false
   
   def index
@@ -25,6 +25,23 @@ class Admin::TerraformingsController < Admin::AreaController
   end
   def create_all
     
+    Terraforming.where("posx BETWEEN ? AND ? AND posy BETWEEN ? AND ? AND map_id = ?",params[:posx].to_i,params[:posx].to_i+params[:width].to_i, params[:posy].to_i, params[:posy].to_i+params[:height].to_i, @map.id ).destroy_all
+    
+    
+    params[:posy].to_i.upto(params[:posy].to_i+params[:height].to_i) do |y|
+      params[:posx].to_i.upto(params[:posx].to_i+params[:width].to_i) do |x|
+        unless(@map.default_field_id == params[:field].to_i)
+          t = Terraforming.new
+          t.map_id = @map.id
+          t.posx = x
+          t.posy = y
+          t.field_id = params[:field].to_i
+          t.save
+        end
+      end
+    end
+    
+    @fields = @map.get_fields(@posx, @posy, [@width, @height].max )
     render :show_map
   end
   def update_position

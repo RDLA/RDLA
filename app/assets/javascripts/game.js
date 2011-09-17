@@ -12,7 +12,7 @@ $(function(){
                init();
                
            });
-    $("#map div").click(function(){
+    $("#map div").livequery("click",function(){
   
    pos = get_div_position(this);
    if(pos)
@@ -26,7 +26,7 @@ $(function(){
 function init()
 {
     generate_grid();
-    $("#map div").mouseover(function(){
+    $("#map div").livequery("mouseover",function(){
    
    pos = get_div_position(this);
    if(pos)

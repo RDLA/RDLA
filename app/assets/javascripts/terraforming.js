@@ -8,7 +8,7 @@ $(function(){
             $("#show_pos").html("["+pos[0]+";"+pos[1]+"]");
             
         });
-         $("#map div").livequery('click',function(){
+        $("#map div").livequery('click',function(){
           
             pos = $(this).attr("id").substring(3).split("I");      
             field = $("#selectedPictureId").val();
@@ -17,8 +17,8 @@ $(function(){
             console.log("Ajax request for creating a field (#"+field+") at position["+pos[0]+";"+pos[1]+"] on #"+map+"");
             
             $.post('/admin/terraformings',{ posx: pos[0], posy: pos[1], map: map, field:field }, function(data){
-                 $("#map").html(data);
-                 $(this).css("opacity","1");
+                $("#map").html(data);
+                $(this).css("opacity","1");
                  
             });
             
@@ -42,35 +42,58 @@ $(function(){
             $("#selectedPictureId").val($(this).attr("alt"));
         });
         $("#build_all").click(function(){
-           if(confirm("Voulez-vous vraiment colorier toutes les cases visibles?"))
-               {
-                   
-               }
-        });
-    }
+            if(confirm("Voulez-vous vraiment colorier toutes les cases visibles?"))
+            {
+                $("#build_all").val("Coloriage en cours...");
+               x = $("#posx").val();
+                y = $("#posy").val();      
+                field = $("#selectedPictureId").val();
+                map = $("#map_id").val();
+                width =$("#width").val();
+                height = $("#height").val();
+               
+                console.log("Ajax request for creating a field (#"+field+") at position["+pos[0]+";"+pos[1]+"] on #"+map+"");
+            
+                $.ajax({
+                    url:"/admin/terraformings/create_all",
+                    type: "PUT",
+                    dataType: "html",
+                    data: "posx="+x+"&posy="+y+"&width="+width+"&height="+height+"&field="+field,
+                    success: function(data) {
+                        $("#map").html(data);
+                        $("#build_all").val("Colorier toutes les cases visibles");
+               
+                    },
+                    error: function(data) {alert("Erreur"); }
+                
+                 
+            });
+        }
+    });
+}
 });
 
 function update_params()
 {
-    map = $("#map_id").val();
-    x = $("#posx").val();
-    y = $("#posy").val();
-    width =$("#width").val();
-    height = $("#height").val();
-    console.log("Ajax request for uploading params and refresh map| Position["+x+";"+y+"] on #"+map+" with windows("+width+"x"+height+") ");
-    $("#majinfo").val("Mise à jour...");
-     $.ajax({
-               url:"/admin/terraformings/update_position",
-               type: "PUT",
-               dataType: "html",
-               data: "map_id="+map+"&posx="+x+"&posy="+y+"&width="+width+"&height="+height,
-               success: function(data) {
-                   $("#majinfo").val("Modifier");
-                   $("#map").html(data);
-                   $("#map").css("width",72*(parseInt(width,10)+1)+"px");
+map = $("#map_id").val();
+x = $("#posx").val();
+y = $("#posy").val();
+width =$("#width").val();
+height = $("#height").val();
+console.log("Ajax request for uploading params and refresh map| Position["+x+";"+y+"] on #"+map+" with windows("+width+"x"+height+") ");
+$("#majinfo").val("Mise à jour...");
+$.ajax({
+    url:"/admin/terraformings/update_position",
+    type: "PUT",
+    dataType: "html",
+    data: "map_id="+map+"&posx="+x+"&posy="+y+"&width="+width+"&height="+height,
+    success: function(data) {
+        $("#majinfo").val("Modifier");
+        $("#map").html(data);
+        $("#map").css("width",72*(parseInt(width,10)+1)+"px");
                   
-                   $("#map").css("height",72*(parseInt(height,10)+1)+"px");
-               },
-               error: function(data) {alert("Erreur"); }
-            })
+        $("#map").css("height",72*(parseInt(height,10)+1)+"px");
+    },
+    error: function(data) {alert("Erreur"); }
+});
 }   
