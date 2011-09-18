@@ -6,7 +6,7 @@
   <h2>En cours</h2>
 <table>
   <tr>
-    
+    <th>Num</th>
     <th>Catégorie</th>
     <th>Assigné à </th>
     <th>Sujet</th>
@@ -16,7 +16,7 @@
   </tr>
 <% @feedbacks_process.each do |feedback|  %>
   <tr class="<%= cycle("darker", "brighter") -%>">
-    
+    <td>#<%= feedback.id %></td>
     <td><%= t feedback.category %></td>
     <td><%= feedback.worker.email unless feedback.worker.blank? %></td>
     <td><%= feedback.subject %></td>
@@ -32,7 +32,7 @@
 <% unless @feedbacks_waiting.empty? %>
 <table>
   <tr>
-    
+    <th>Num</th>
     <th>Catégorie</th>
     <th>Assigné à </th>
     <th>Sujet</th>
@@ -42,7 +42,7 @@
   </tr>
 <% @feedbacks_waiting.each do |feedback|  %>
   <tr class="<%= cycle("darker", "brighter") -%>">
-    
+    <td>#<%= feedback.id %></td>
     <td><%= t feedback.category %></td>
     <td><%= feedback.worker.email unless feedback.worker.blank? %></td>
     <td><%= feedback.subject %></td>
@@ -61,6 +61,7 @@
   <% unless @feedbacks_completed.empty? %>
 <table>
   <tr>
+    <th>Num</th>
     <th>Catégorie</th>
     <th>Assigné à </th>
     <th>Sujet</th>
@@ -70,6 +71,7 @@
   </tr>
 <% @feedbacks_completed.each do |feedback|  %>
   <tr class="<%= cycle("darker", "brighter") -%>">
+    <td>#<%= feedback.id %></td>
     <td><%= t feedback.category %></td>
     <td><%= feedback.worker.email unless feedback.worker.blank? %></td>
     <td><%= feedback.subject %></td>
