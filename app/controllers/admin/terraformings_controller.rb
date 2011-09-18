@@ -53,6 +53,9 @@ class Admin::TerraformingsController < Admin::AreaController
     get_session
     render :show_map
   end
+  def minimap_js
+    
+  end
 
   private
   def get_session

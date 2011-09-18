@@ -131,3 +131,13 @@
     height:2em;
     padding-top:10px;
 }
+#minimap
+{
+    position:fixed;
+    top:5%;
+    left:25%;
+    width:500px;
+    height:500px;
+    background: rgba(255,255,255,0.5);
+    display:none;
+}

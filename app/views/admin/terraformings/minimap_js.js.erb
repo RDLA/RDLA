@@ -1,0 +1,21 @@
+$(function(){
+
+  if(window.location.pathname == '/admin/terraformings')
+  {
+ 
+    $("body").keypress(function(event) 
+    {
+     
+      if ( event.which == 109 ) 
+      {
+        $("#minimap").toggle();
+        event.preventDefault();
+       }
+    });
+        var worldmap = document.getElementById('worldmap');
+    var c = worldmap.getContext('2d');
+    
+    c.fillStyle = "#900";
+    c.fillRect(30, 30, 10, 10);
+  }
+});

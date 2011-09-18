@@ -19,6 +19,7 @@ RDLA::Application.routes.draw do
       collection do
         put :update_position
         put :create_all
+        get :minimap_js
       end
     end
     root :to => "home#index"

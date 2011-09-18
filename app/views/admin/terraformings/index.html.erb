@@ -5,8 +5,10 @@
   <title>Administration - RDLA</title>
   <link  href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" media="screen" href="/player/field_css.css">
+  
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <script type="text/javascript" src="/admin/terraformings/minimap_js.js" ></script>
   <%= csrf_meta_tags %>  
 </head> 
 <body> 
@@ -31,7 +33,11 @@
       <img src="<%= "#{ASSETS_URL}#{field.filename}" %>" class="field" alt="<%= field.id %>" style="cursor:pointer" />
     <% end %>
   </div>
-  
+  <div id="minimap">
+    <canvas id="worldmap" width="200" height="200">
+      Votre navigateur ne supporte pas la balise Canvas. Il serait peut-être temps d'en changer?
+    </canvas>
+  </div>
   <p style="position:fixed;bottom:0;right:5px;background: #900;padding:0.5em;border-radius:15px;"><%= link_to "Retour Administration", admin_root_path,:style => "color:white;text-decoration:none;font-weight:bolder;" %></p>
 </body> 
 </html> 
