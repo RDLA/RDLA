@@ -17,13 +17,14 @@ $(function(){
     
     var pixelX = worldmap.width / <%= @minimap_width %>;
     var pixelY = worldmap.width / <%= @minimap_height %>;
+    var pixel = Math.min(pixelX, pixelY);
     c.fillStyle = '<%= @map.default_field.color %>';
     c.fillRect(0,0, worldmap.width, worldmap.height);
     <% current_color = nil %>
     <% @minimap_terraformings.each do |t| %>
       <%= "c.fillStyle = '#{t.field.color}';"  if current_color != t.field.color %>
       <% current_color = t.field.color  %>
-      c.fillRect(pixelX*<%= t.posx   %>, pixelY*<%= t.posy %>, pixelX, pixelY);
+      c.fillRect(pixel*<%= t.posx   %>, pixel*<%= t.posy %>, pixel, pixel);
     <%end  %>
     
   }
