@@ -1,5 +1,6 @@
 class Field < ActiveRecord::Base
   has_many :maps
+  validates :color, :presence => true
   
   require 'open-uri'
   def self.get_distant_fields_picture
