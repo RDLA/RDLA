@@ -2,39 +2,57 @@ var posx = null;
 var posy = null;
 $(function(){
    
-   if(window.location.pathname == '/jeu')
-   {
-   $.getJSON("/player/current_position.json",function(player){
+    if(window.location.pathname == '/jeu')
+    {
+        $.getJSON("/player/current_position.json",function(player){
               
-               posx =  parseInt(player.posx,10);
+            posx =  parseInt(player.posx,10);
               
-               posy =  parseInt(player.posy,10);
-               init();
+            posy =  parseInt(player.posy,10);
+            init();
                
-           });
-    $("#map div").livequery("click",function(){
-  
-   pos = get_div_position(this);
-   if(pos)
-       go_to(pos.x, pos.y);
+        });
+        $("#info").click(function(){
+            $.get("player/players/-1", function(data){
+                $("#right_side").html(data);
+            });
+        });
+        $("#map div").livequery("click",function(){
+            
+            if($(this).attr("id").substr(0,6) == "player")
+            {
+                playerId = $(this).attr("id").substring(6);
+             
+                $.get("player/players/"+playerId, function(data){
+                $("#right_side").html(data);
+                });
+            }
+            else
+            {
+                pos = get_div_position(this);
+                if(pos)
+                    go_to(pos.x, pos.y);
+            }
+            
+   
        
    
     
-});
-   }
+        });
+    }
 });
 function init()
 {
     generate_grid();
     $("#map div").livequery("mouseover",function(){
    
-   pos = get_div_position(this);
-   if(pos)
-       show_path_to(pos.x, pos.y);
+        pos = get_div_position(this);
+        if(pos)
+            show_path_to(pos.x, pos.y);
        
    
     
-});
+    });
 
 
 
@@ -48,42 +66,47 @@ function go_to(x,y)
     
     var result = astar.search(graph.nodes, start, end);
     if(result.length != 0)
-        {
+    {
              
-           $.ajax({
-               url:"/player/update_position.html",
-               type: "PUT",
-               dataType: "html",
-               data: "x="+x+"&y="+y,
-               success: function(data) {
-                   $("#map").html(data);
-                   posx = x;
-                   posy = y;
-                   init();
-               },
-               error: function(data) {alert("Erreur"); }
-            })
-        }
+        $.ajax({
+            url:"/player/update_position.html",
+            type: "PUT",
+            dataType: "html",
+            data: "x="+x+"&y="+y,
+            success: function(data) {
+                $("#map").html(data);
+                posx = x;
+                posy = y;
+                init();
+            },
+            error: function(data) {
+                alert("Erreur");
+            }
+        })
+    }
      
 }
 function get_div_position(div)
 {
-   pos = $(div).attr("id").substring(3).split("I");
-   destinationX = parseInt(pos[0],10);
-   destinationY = parseInt(pos[1],10);
-   if(!isNaN(destinationX) && !isNaN(destinationY))
-       return {"x" : destinationX, "y" : destinationY}
-   else
-       return false
+    pos = $(div).attr("id").substring(3).split("I");
+    destinationX = parseInt(pos[0],10);
+    destinationY = parseInt(pos[1],10);
+    if(!isNaN(destinationX) && !isNaN(destinationY))
+        return {
+            "x" : destinationX, 
+            "y" : destinationY
+        }
+    else
+        return false
 }
 function generate_grid()
 {
    
     grid = new Array(Math.sqrt($("#map div").length));
     for(i = 0; i<grid.length ; i++)
-        {
-            grid[i] = new Array(Math.sqrt($("#map div").length));
-        }
+    {
+        grid[i] = new Array(Math.sqrt($("#map div").length));
+    }
     x = 0;
     y = 0;
     
@@ -91,30 +114,30 @@ function generate_grid()
        
         
         if(x == grid.length)
-            {
-               x=0;
-               y++;
-            }
+        {
+            x=0;
+            y++;
+        }
             
         if($(this).children().attr("src") != null)
-            {
+        {
             
             grid[x][y] = 1;
-            }
+        }
         else
-            {
+        {
             grid[x][y] = 0;        
-            }
+        }
            
         
        
         x++;
-        });
-        graph = new Graph(grid);
+    });
+    graph = new Graph(grid);
         
 
       
-        start = graph.nodes[5][5];
+    start = graph.nodes[5][5];
 }
 
 function show_path_to(destx,desty)
@@ -135,7 +158,7 @@ function show_path_to(destx,desty)
      
     for(var i = 0; i < result.length ; i++)
     {
-         $("#pos"+(result[i].pos.x-offsetX)+"I"+(result[i].pos.y-offsetY)).attr("style","opacity:0.8");
+        $("#pos"+(result[i].pos.x-offsetX)+"I"+(result[i].pos.y-offsetY)).attr("style","opacity:0.8");
     }        
 
 }

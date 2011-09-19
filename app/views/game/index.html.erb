@@ -8,10 +8,10 @@
   </div>
 </div>
 <div id="right_side">
- 
-  <h2 id="character_name"><%= @player_connected.name %></h2>
+ <%= render :partial => "info", :locals => { :player => @player_connected }  %>
+    
 </div>
  <dl id="onglets">
-    <dt class="current"><img src="/assets/profil.png" alt="Profil" title="Mon Profil" /></dt>
+    <dt class="current"><img id="info" src="/assets/profil.png" alt="Profil" title="Mon Profil" /></dt>
 
   </dl>

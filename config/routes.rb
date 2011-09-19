@@ -10,6 +10,7 @@ RDLA::Application.routes.draw do
     get :current_position
     put :update_position
     get :field_css
+    resources :players, :only => [:show]
   end
   
 
