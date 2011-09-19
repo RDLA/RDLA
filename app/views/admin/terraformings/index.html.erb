@@ -19,7 +19,7 @@
     <div id="map" style="width:<%= 72*(@width+1)  %>px; height:<%= 72*(@height+1)  %>px ">
     <%= render :partial => "map", :locals => { :posx => @posx, :posy => @posy, :width => @width, :height => @height, :map => @map, :fields => @fields}  %>
     </div>
-    <div  class="terraforming_option">Plan: <%=  select_tag :map_id, options_for_select(@maps.collect {|map| [map.name,map.id]}, @map.id) %> X: <%= number_field_tag :posx, @posx.to_s, :size => 3 %> Y: <%= number_field_tag :posy, @posy, :size => 3 %> |  Largeur: <%= number_field_tag :width, @width, :size => 3 %> Hauteur:<%= number_field_tag :height, @height, :size => 3 %> <input id="majinfo" type="button" value="Modifier" /> | Position curseur: <span id="show_pos">[0;0]</span></div>
+    <div  class="terraforming_option">Plan: <%=  select_tag :map_id, options_for_select(@maps.collect {|map| [map.name,map.id]}, @map.id) %> X: <%= number_field_tag :posx, @posx.to_s, :size => 3 %> Y: <%= number_field_tag :posy, @posy, :size => 3 %> |  Largeur: <%= number_field_tag :width, @width, :size => 3 %> Hauteur:<%= number_field_tag :height, @height, :size => 3 %> <input id="majinfo" type="button" value="Modifier" /> | Position curseur: <span id="show_pos">[0;0]</span> | "M" pour afficher la minimap</div>
   </div>
   <div class="terraforming_toolbar">
     <p>Case sélectionnée: <br /><img id="selectedPicture" src='<%= "#{ASSETS_URL}#{@map.default_field.filename}" %>' /><input type="hidden" id="selectedPictureId" value="<%= @map.default_field.id %>" /><br />
@@ -34,7 +34,7 @@
     <% end %>
   </div>
   <div id="minimap">
-    <canvas id="worldmap" width="200" height="200">
+    <canvas id="worldmap" width="500" height="500">
       Votre navigateur ne supporte pas la balise Canvas. Il serait peut-être temps d'en changer?
     </canvas>
   </div>

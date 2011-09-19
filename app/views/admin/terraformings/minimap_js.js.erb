@@ -12,10 +12,19 @@ $(function(){
         event.preventDefault();
        }
     });
-        var worldmap = document.getElementById('worldmap');
+    var worldmap = document.getElementById('worldmap');
     var c = worldmap.getContext('2d');
     
-    c.fillStyle = "#900";
-    c.fillRect(30, 30, 10, 10);
+    var pixelX = worldmap.width / <%= @minimap_width %>;
+    var pixelY = worldmap.width / <%= @minimap_height %>;
+    c.fillStyle = '<%= @map.default_field.color %>';
+    c.fillRect(0,0, worldmap.width, worldmap.height);
+    <% current_color = nil %>
+    <% @minimap_terraformings.each do |t| %>
+      <%= "c.fillStyle = '#{t.field.color}';"  if current_color != t.field.color %>
+      <% current_color = t.field.color  %>
+      c.fillRect(pixelX*<%= t.posx   %>, pixelY*<%= t.posy %>, pixelX, pixelY);
+    <%end  %>
+    
   }
 });

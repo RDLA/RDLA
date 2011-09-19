@@ -14,7 +14,7 @@
   <tr  class="<%= cycle("darker", "brighter") -%>">
     <td><img src="<%= "#{ASSETS_URL}#{field.filename}" %>" alt="<%= field.filename %>" /></td>
     <td><%= field.filename %></td>
-    <td style="width:1px;white-space:nowrap;"><%#= link_to "Editer", edit_admin_field_path(field.id) %><%= link_to "Supprimer", admin_field_path(field.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_field_path(field.id) %> - <%= link_to "Supprimer", admin_field_path(field.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>
 <%  end %>
 </table>

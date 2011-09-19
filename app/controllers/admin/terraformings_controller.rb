@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Admin::TerraformingsController < Admin::AreaController
-  before_filter :get_session, :only => [:index, :create, :create_all]
+  before_filter :get_session, :only => [:index, :create, :create_all, :minimap_js]
   layout false
   
   def index
@@ -54,6 +54,17 @@ class Admin::TerraformingsController < Admin::AreaController
     render :show_map
   end
   def minimap_js
+    @minimap_terraformings = @map.terraformings.order("field_id ASC")
+    posx = @minimap_terraformings.collect{|t| t.posx}
+    posx_min = posx.min
+    posx_max = posx.max
+    @minimap_width = posx_max - posx_min + 1
+    
+    posy = @minimap_terraformings.collect{|t| t.posy}
+    posy_min = posy.min
+    posy_max = posy.max
+    @minimap_height = posy_max - posy_min + 1
+        
     
   end
 
