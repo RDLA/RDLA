@@ -31,5 +31,9 @@
   <%= f.number_field :posy, :step => 1 %>
 </p>
 <p>
+  <%= f.label :description, "Description physique (250 carac max)" %><br />
+  <%= f.text_area :description, :size => "30x10" %>
+</p>
+<p>
   <%= f.submit :value => button %>
 </p>
