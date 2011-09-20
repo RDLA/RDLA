@@ -17,6 +17,18 @@ $(function(){
                 $("#right_side").html(data);
             });
         });
+                
+        
+        $("#update_description").livequery("keyup",function(){
+            $.ajax({
+                url:"/player/players/update_description",
+                type: "PUT",
+                dataType: "html",
+                data: "description="+$("#update_description").val()               
+            });
+        });
+            
+    
         $("#map div").livequery("click",function(){
             
             if($(this).attr("id").substr(0,6) == "player")
@@ -24,7 +36,7 @@ $(function(){
                 playerId = $(this).attr("id").substring(6);
              
                 $.get("player/players/"+playerId, function(data){
-                $("#right_side").html(data);
+                    $("#right_side").html(data);
                 });
             }
             else

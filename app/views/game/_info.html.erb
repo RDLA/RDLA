@@ -1,3 +1,9 @@
 <h2 id="character_name"><%= player.name %></h2>
 
-<p id="description"><strong>Description physique: </strong><%=  player.description %></p>
+<p id="description"><strong>Description physique: </strong>
+  <% if session[:player_connected].to_i == player.id %>
+    <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
+  <% else %>
+    <br /><%= player.description %>
+  <% end %>
+</p>
