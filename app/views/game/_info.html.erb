@@ -3,7 +3,14 @@
 <p id="description"><strong>Description physique: </strong>
   <% if session[:player_connected].to_i == player.id %>
     <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
+    
+    <div id="caracs">
+      <p>Puissance: <%= player.power %> / <%= player.power_max %></p>
+       <p>Constitution: <%= player.constitution %></p>
+    </div>
+    
   <% else %>
     <br /><%= player.description %>
   <% end %>
 </p>
+
