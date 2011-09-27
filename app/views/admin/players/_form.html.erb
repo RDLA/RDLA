@@ -34,6 +34,11 @@
   <%= f.label :description, "Description physique (250 carac max)" %><br />
   <%= f.text_area :description, :size => "30x10" %>
 </p>
+<h3>Caractéristiques</h3>
+<p>
+  <%= f.label :power, "Puissance:" %>
+  <%= f.number_field :power,:size => 3, :step => 1 %> / <%= f.number_field :power_max,:size => 3, :step => 1 %>
+</p>
 <p>
   <%= f.submit :value => button %>
 </p>
