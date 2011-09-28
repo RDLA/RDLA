@@ -5,7 +5,7 @@ class Admin::TerraformingsController < Admin::AreaController
   
   def index
  
-#    @categories = Field.all.collect{ |f| Category.find f.category_id}.uniq
+    @categories = Field.all.collect{ |f| Category.find f.category_id}.uniq
     
     @maps = Map.all
   end
