@@ -1,5 +1,8 @@
 class Field < ActiveRecord::Base
   has_many :maps
+  
+  belongs_to :category
+  
   validates :color, :presence => true
   
   require 'open-uri'

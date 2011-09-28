@@ -4,7 +4,9 @@ class Admin::TerraformingsController < Admin::AreaController
   layout false
   
   def index
-    @fields_library = Field.all
+ 
+    @categories = Field.all.collect{ |f| Category.find f.category_id}.uniq
+    
     @maps = Map.all
   end
   def create

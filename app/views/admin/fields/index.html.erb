@@ -7,12 +7,14 @@
 <table>
   <tr>
     <th  style="width:1px;white-space:nowrap;">Image</th>
+    <th>Categorie</th>
     <th>Nom image</th>
     <th style="width:1px;white-space:nowrap;">Actions</th>
   </tr>
 <% @fields.each do |field|  %>
   <tr  class="<%= cycle("darker", "brighter") -%>">
     <td><img src="<%= "#{ASSETS_URL}#{field.filename}" %>" alt="<%= field.filename %>" /></td>
+    <td><%= field.category.name unless field.category_id.blank? %> </td>
     <td><%= field.filename %></td>
     <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_field_path(field.id) %> - <%= link_to "Supprimer", admin_field_path(field.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
   </tr>

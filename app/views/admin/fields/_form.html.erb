@@ -19,6 +19,10 @@
 </div>
 <% end %>
 <p style="clear:both;">
+  <%= f.label :category_id, "Catégorie :" %>
+  <%= f.select :category_id, options_for_select([["Choisir...",nil]]+@categories.collect {|cat| [cat.name,cat.id]}, @field.category_id) %>
+</p>
+<p style="clear:both;">
   <%= f.label :color, "Couleur :" %>
   <%= f.text_field :color  %>  
 </p>

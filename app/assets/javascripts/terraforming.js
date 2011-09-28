@@ -2,6 +2,20 @@ $(function(){
    
     if(window.location.pathname == '/admin/terraformings')
     {
+        
+        /* Category */
+        $(".terraform_biblio_item").hide();
+        $("#cat1").show();
+        
+        $("#category_id").livequery('change', function()
+        {
+            category_id = $("#category_id").val();
+        $(".terraform_biblio_item").hide();
+        $("#cat"+category_id).show();
+
+        })
+        
+        
         $("#map div").mouseover(function(){
             
             pos = $(this).attr("id").substring(3).split("I");           
