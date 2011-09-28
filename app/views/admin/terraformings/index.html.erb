@@ -28,19 +28,7 @@
       
     </p>
     <hr />
-    <p>Bibliothèque <br /><%= select_tag :category_id, options_for_select(@categories.collect {|cat| [cat.name,cat.id]}, 1) %></p>
-    
-    <%# @categories.each do |category| %>
-    
-    
-        <%#*<div id="cat<%= category.id %>" class="terraform_biblio_item">%>
-        <%#*<h4><%= category.name %></h4>%>
-          <%# category.fields.each do |field|  %>
-            <%#*<img src="<%= "#{ASSETS_URL}#{field.filename}" %>" class="field" alt="<%= field.id %>" style="cursor:pointer" />%>
-          <%#  end %>
-        <%#*</div>%>
-        
-      <%# end %>
+ 
     
   </div>
   <div id="minimap">
