@@ -8,6 +8,7 @@ class Admin::TerraformingsController < Admin::AreaController
     @categories = Field.all.collect{ |f| Category.find f.category_id}.uniq
     
     @maps = Map.all
+    raise "A".inspect
   end
   def create
     
