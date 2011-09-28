@@ -4,11 +4,11 @@ class Admin::TerraformingsController < Admin::AreaController
   layout false
   
   def index
- 
+  raise "A".inspect
     @categories = Field.all.collect{ |f| Category.find f.category_id}.uniq
     
     @maps = Map.all
-    raise "A".inspect
+   
   end
   def create
     
