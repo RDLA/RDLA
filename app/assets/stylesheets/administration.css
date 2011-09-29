@@ -101,12 +101,13 @@
 }
 .terraforming_toolbar
 {
-    float:right;
+
     
-     background:rgba(10,15,41,0.8);
+    background:rgba(10,15,41,0.8);
+    position:fixed;
+    right:0;
+    height:100%;
     
-    height:95%;
-    overflow: auto;
     width:25%;
     border-bottom-left-radius: 5px;
     color: #d5cece;
@@ -118,7 +119,11 @@
     text-align:center;
     margin:auto;
 }
-
+.terraform_biblio_item
+{
+    overflow-y: auto;
+    height:70%;
+}
 
 .terraforming_option
 {

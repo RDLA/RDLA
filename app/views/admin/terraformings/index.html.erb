@@ -34,7 +34,7 @@
     
     
         <div id="cat<%= category.id %>" class="terraform_biblio_item">
-        <h4><%= category.name %></h4>
+        
           <% category.fields.each do |field|  %>
             <img src="<%= "#{ASSETS_URL}#{field.filename}" %>" class="field" alt="<%= field.id %>" style="cursor:pointer" />
           <%  end %>
