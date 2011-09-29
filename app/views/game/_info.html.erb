@@ -3,14 +3,30 @@
 <p id="description"><strong>Description physique: </strong>
   <% if session[:player_connected].to_i == player.id %>
     <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
-    
-    <div id="caracs">
-      <p>Puissance: <%= player.power %> / <%= player.power_max %></p>
-       <p>Constitution: <%= player.constitution %></p>
-    </div>
-    
-  <% else %>
-    <br /><%= player.description %>
-  <% end %>
+
+  <div id="caracs">
+    <p>
+      
+      <canvas id="power" width="10" height="100" title="Puissance">
+
+      </canvas>
+      <script type="text/javascript">
+        
+        var exemple = document.getElementById('power');
+        var contexte = exemple.getContext('2d');
+        contexte.fillStyle = "rgba(0,0,0,0.5)";
+        contexte.fillRect(0, 0, 10, 100 - <%= player.get_power_bar.to_s  %> );
+        contexte.fillStyle = "rgba(153,0,0,0.5)";
+        contexte.fillRect(0, 100 - <%= player.get_power_bar.to_s  %>, 10, <%= player.get_power_bar.to_s  %> );
+      </script><br />
+      <%= player.power %> / <%= player.power_max %>
+      
+    </p>
+    <p>Constitution: <%= player.constitution %></p>
+  </div>
+
+<% else %>
+  <br /><%= player.description %>
+<% end %>
 </p>
 

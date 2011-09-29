@@ -27,6 +27,13 @@
     font-size: 200%;
 
 }
+#right_side #caracs
+{
+    text-align:center;
+    padding: 15px;
+    font-size:medium;
+    font-family: "Nunito", sans-serif
+}
 #onglets
 {
 

@@ -14,7 +14,10 @@ class Player < ActiveRecord::Base
     update_power() if self.turn + 1.minute < Time.now
   end
   
-
+  def get_power_bar
+     self.power * 200 / self.power_max
+  end
+  
   def update_power
     #Update the power according to the previous time
     # ENT(P/Pmax*4+Con*0,5) / 86400
