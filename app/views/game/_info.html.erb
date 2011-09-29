@@ -5,7 +5,7 @@
     <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
 
   <div id="caracs">
-    <p>
+    <p class="bar">
       
       <canvas id="power" width="10" height="100" title="Puissance">
 
@@ -22,6 +22,25 @@
       <%= player.power %> / <%= player.power_max %>
       
     </p>
+    
+    <p class="bar">
+      
+      <canvas id="action" width="10" height="100" title="Action">
+
+      </canvas>
+      <script type="text/javascript">
+        
+        var exemple = document.getElementById('action');
+        var contexte = exemple.getContext('2d');
+        contexte.fillStyle = "rgba(0,0,0,0.5)";
+        contexte.fillRect(0, 0, 10, 100 - <%= player.get_action_bar.to_s  %> );
+        contexte.fillStyle = "rgba(0,153,0,0.5)";
+        contexte.fillRect(0, 100 - <%= player.get_action_bar.to_s  %>, 10, <%= player.get_action_bar.to_s  %> );
+      </script><br />
+      <%= player.action %> / <%= player.action_max %>
+      
+    </p>
+    
     <p>Constitution: <%= player.constitution %></p>
   </div>
 

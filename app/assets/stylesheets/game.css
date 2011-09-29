@@ -33,6 +33,14 @@
     padding: 15px;
     font-size:medium;
     font-family: "Nunito", sans-serif
+        
+}
+#caracs .bar
+{
+    display:inline-block;
+    margin:auto;
+    padding-right:30px;
+    padding-left:30px;
 }
 #onglets
 {

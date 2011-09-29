@@ -36,6 +36,10 @@
 </p>
 <h3>Caractéristiques</h3>
 <p>
+  <%= f.label :action, "Action:" %>
+  <%= f.number_field :action,:size => 3, :step => 1 %> / <%= f.number_field :action_max,:size => 3, :step => 1 %>
+</p>
+<p>
   <%= f.label :power, "Puissance:" %>
   <%= f.number_field :power,:size => 3, :step => 1 %> / <%= f.number_field :power_max,:size => 3, :step => 1 %>
 </p>

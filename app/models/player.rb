@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
   attr_accessible :map, :user, :name, :posx, :posy, :map_id, :user_id, :description,
-    :power, :power_max, :turn, :constitution
+    :power, :power_max,:action, :action_max, :turn, :constitution
   
   belongs_to :map
   belongs_to :user
@@ -8,14 +8,20 @@ class Player < ActiveRecord::Base
   validates :description, :length => { :maximum => 250 }
   validates :power, :presence => true, :numericality => true
   validates :power_max, :presence => true, :numericality => true
+   validates :action, :presence => true, :numericality => true
+  validates :action_max, :presence => true, :numericality => true
   
   after_initialize do
     
     update_power() if self.turn + 1.minute < Time.now
+    update_action() if self.turn_action + 1.minute < Time.now
   end
   
   def get_power_bar
-     self.power * 200 / self.power_max
+     self.power * 100 / self.power_max
+  end
+    def get_action_bar
+     self.action * 100 / self.action_max
   end
   
   def update_power
@@ -29,7 +35,24 @@ class Player < ActiveRecord::Base
       self.turn = self.turn + (win / base_count).floor
       self.save
     end
-#    p "Algo: #{base_count} g/s, second_past: #{second_past}s, win: #{win}, #{self.turn}"
+
+  end
+  def update_action
+    #Update the action according to the previous time
+ 
+    base_count = self.action_max / 86400.to_f
+    second_past = Time.now.to_time.to_i - self.turn_action.to_time.to_i
+    win = (base_count*second_past).floor
+    if win >= 1
+      self.action = [self.action + win, self.action_max].min
+      self.turn_action = self.turn_action + (win / base_count).floor
+      self.save
+    end
+
+  end
+  def get_distance_with(player_id)
+    player = Player.find player_id
+    [(player.posx-self.posx).abs, (player.posy-self.posy).abs ].max
   end
   
   
