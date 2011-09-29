@@ -51,7 +51,7 @@ class Player < ActiveRecord::Base
 
   end
   def get_distance_with(player_id)
-    player = Player.find player_id
+    player = Player.find player_id rescue self
     [(player.posx-self.posx).abs, (player.posy-self.posy).abs ].max
   end
   
