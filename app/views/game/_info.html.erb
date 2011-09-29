@@ -1,13 +1,14 @@
 <h2 id="character_name"><%= player.name %></h2>
 
-<p id="description"><strong>Description physique: </strong>
-  <% if session[:player_connected].to_i == player.id %>
-    <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
 
+  <% if session[:player_connected].to_i == player.id %>
+    <p id="description"><strong>Description physique: </strong>
+      <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
+    </p>
   <div id="caracs">
     <p class="bar">
       
-      <canvas id="power" width="10" height="100" title="Puissance">
+      <canvas id="power" width="10" height="100" title=" <%= player.power %> / <%= player.power_max %>">
 
       </canvas>
       <script type="text/javascript">
@@ -19,13 +20,13 @@
         contexte.fillStyle = "rgba(153,0,0,0.5)";
         contexte.fillRect(0, 100 - <%= player.get_power_bar.to_s  %>, 10, <%= player.get_power_bar.to_s  %> );
       </script><br />
-      <%= player.power %> / <%= player.power_max %>
+     Puissance
       
     </p>
     
     <p class="bar">
       
-      <canvas id="action" width="10" height="100" title="Action">
+      <canvas id="action" width="10" height="100" title="<%= player.action %> / <%= player.action_max %>">
 
       </canvas>
       <script type="text/javascript">
@@ -37,7 +38,7 @@
         contexte.fillStyle = "rgba(0,153,0,0.5)";
         contexte.fillRect(0, 100 - <%= player.get_action_bar.to_s  %>, 10, <%= player.get_action_bar.to_s  %> );
       </script><br />
-      <%= player.action %> / <%= player.action_max %>
+      Action
       
     </p>
     
@@ -45,7 +46,13 @@
   </div>
 
 <% else %>
+
+<% if player.get_distance_with(session[:player_connected].to_i) == 1 %>
+  <p id="actions">Attaque au corps à corps</p>
+  <% end %>
+  <p id="description"><strong>Description physique: </strong>
   <br /><%= player.description %>
+  </p>
 <% end %>
-</p>
+
 
