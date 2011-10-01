@@ -28,6 +28,7 @@ class Admin::FeedbacksController < Admin::AreaController
   end
   def create
     @feedback = Feedback.new(params[:feedback])
+    @feedback.user_id = current_user.id
     if @feedback.save
       flash[:notice] = "Demande créé avec succès!"
       redirect_to admin_feedbacks_path

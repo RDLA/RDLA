@@ -1,5 +1,6 @@
 
 <% content_for :section, :feedbacks %>
+
 <h1>Edition du feedback <%= @feedback.subject %></h1>
 <%= form_for @feedback, :as => :feedback, :url => admin_feedback_path do |f| %>
 

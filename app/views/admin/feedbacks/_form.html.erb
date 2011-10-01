@@ -22,10 +22,13 @@
   <%= f.label :subject, "Sujet" %>
   <%= f.text_field :subject  %>  
 </p>
+
 <p>
-  <%= f.label :user_id, "Propriétaire" %>
-  <%= f.select :user_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.user_id) %>
+  <%= f.label :user_id, "Propriétaire: " %>
+  <%= current_user.email  if button == "Créer" %>
+  <%= @feedback.user.email  if button == "Modifier" && !@feedback.user.blank? %>
 </p>
+
 <p>
   <%= f.label :worker_id, "Assignation" %>
   <%= f.select :worker_id, options_for_select([["Choisir...",nil]]+@users.collect {|user| [user.email,user.id]}, @feedback.worker_id) %>
