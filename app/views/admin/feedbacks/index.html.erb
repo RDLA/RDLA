@@ -1,6 +1,7 @@
 <% content_for :section,  :feedbacks %>
 <h1>Liste des feedbacks</h1>
 <div><%= link_to "Nouveau Feedback", new_admin_feedback_path %></div>
+<div>Filtre: <%= link_to "Tous", "#{admin_feedbacks_path}#{"?user=1" unless params[:user].blank?}" %>, <%= link_to "Implémentation", "#{admin_feedbacks_path}?#{"user=1&" unless params[:user].blank?}filter=feature" %>, <%= link_to "Préparation", "#{admin_feedbacks_path}?#{"user=1&" unless params[:user].blank?}filter=todo" %>, <%= link_to "Bug", "#{admin_feedbacks_path}?#{"user=1&" unless params[:user].blank?}filter=bug" %> | Afficher:  <%= link_to "Tous", "#{admin_feedbacks_path}#{"?filter=" unless params[:filter].blank?}#{params[:filter]}" %>, <%= link_to "Mes feedbacks", "#{admin_feedbacks_path}?user=1#{"&filter=" unless params[:filter].blank?}#{params[:filter]}" %></div>
 
   <% unless @feedbacks_process.empty? %>
   <h2>En cours</h2>

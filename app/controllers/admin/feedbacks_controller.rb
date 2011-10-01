@@ -3,9 +3,25 @@ class Admin::FeedbacksController < Admin::AreaController
   before_filter :find_feedback, :only => [:destroy, :update, :edit]
   before_filter :find_all_users, :only => [:edit, :new, :update]
   def index
-    @feedbacks_waiting = Feedback.waiting.order("priority DESC, updated_at DESC")
-    @feedbacks_completed = Feedback.completed.order("priority DESC, updated_at DESC")
-    @feedbacks_process = Feedback.in_process.order("priority DESC, updated_at DESC")
+    if params[:filter].blank?
+      feedback = Feedback
+    elsif params[:filter] == "bug"
+      feedback = Feedback.bug
+    elsif params[:filter] == "todo"  
+      feedback = Feedback.todo
+    elsif params[:filter] == "feature"
+      feedback = Feedback.feature
+    end
+    
+    
+      @feedbacks_waiting = feedback.waiting.order("priority DESC, updated_at DESC")
+      @feedbacks_completed = feedback.completed.order("priority DESC, updated_at DESC")
+      @feedbacks_process = feedback.in_process.order("priority DESC, updated_at DESC")
+    unless params[:user].blank?
+      @feedbacks_waiting = @feedbacks_waiting.where("worker_id = ?",current_user.id)
+      @feedbacks_completed = @feedbacks_completed.where("worker_id = ?",current_user.id)
+      @feedbacks_process = @feedbacks_process.where("worker_id = ?",current_user.id)
+    end
   end
   def new
     @feedback = Feedback.new
