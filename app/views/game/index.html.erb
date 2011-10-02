@@ -13,5 +13,5 @@
 </div>
  <dl id="onglets">
     <dt class="current"><img id="info" src="/assets/profil.png" alt="Profil" title="Mon Profil" /></dt>
-
+    <dt><%= link_to image_tag("/assets/logout.png", :alt => "Se déconnecter", :title => "Se déconnecter"), destroy_user_session_path, :method => :delete %></dt>
   </dl>
