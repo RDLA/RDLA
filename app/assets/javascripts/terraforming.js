@@ -2,7 +2,15 @@ $(function(){
    
     if(window.location.pathname == '/admin/terraformings')
     {
-        
+         $("body").keypress(function(event) 
+    {
+     
+      if ( event.which == 109 ) 
+      {
+        $("#minimap").toggle();
+        event.preventDefault();
+       }
+    });
         /* Category */
         $(".terraform_biblio_item").hide();
         $("#cat1").show();
@@ -86,10 +94,11 @@ $(function(){
     });
 }
 });
-
+count_uniq = 0;
 function update_params()
 {
 map = $("#map_id").val();
+
 x = $("#posx").val();
 y = $("#posy").val();
 width =$("#width").val();
@@ -107,6 +116,13 @@ $.ajax({
         $("#map").css("width",72*(parseInt(width,10)+1)+"px");
                   
         $("#map").css("height",72*(parseInt(height,10)+1)+"px");
+        //Update minimap
+        $.get("/admin/terraformings/minimap_js.js", function(data){
+            
+            eval(data);
+        })
+        
+       
     },
     error: function(data) {alert("Erreur"); }
 });
