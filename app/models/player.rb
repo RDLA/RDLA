@@ -8,7 +8,7 @@ class Player < ActiveRecord::Base
   validates :description, :length => { :maximum => 250 }
   validates :power, :presence => true, :numericality => true
   validates :power_max, :presence => true, :numericality => true
-   validates :action, :presence => true, :numericality => true
+  validates :action, :presence => true, :numericality => true
   validates :action_max, :presence => true, :numericality => true
   
   after_initialize do
@@ -18,10 +18,10 @@ class Player < ActiveRecord::Base
   end
   
   def get_power_bar
-     self.power * 100 / self.power_max
+    self.power * 100 / self.power_max
   end
-    def get_action_bar
-     self.action * 100 / self.action_max
+  def get_action_bar
+    self.action * 100 / self.action_max
   end
   
   def update_power
@@ -53,6 +53,41 @@ class Player < ActiveRecord::Base
   def get_distance_with(player_id)
     player = Player.find player_id rescue self
     [(player.posx-self.posx).abs, (player.posy-self.posy).abs ].max
+  end
+  
+  def can_go(path)
+    #Check if the user can go to a specified target with the current path
+    road = path.split("/")
+    current_x = self.posx
+    current_y = self.posy
+    can_go = true
+    road.each do |pos|
+      unless pos.blank?
+        p = pos.split(";")
+        next_x = p[0].to_i
+        next_y = p[1].to_i
+        
+        pos_valid = true
+        
+        #Is the position close to the player?
+        if( (current_x - next_x).abs > 1 && (current_y - next_y).abs > 1)
+          pos_valid = false
+        end
+        
+        #Is there a player on the position?
+        player = Player.find_by_posx_and_posy_and_map_id(next_x, next_y, self.map_id)
+        pos_valid = false unless player.blank?
+         
+        if pos_valid
+          current_x = next_x
+          current_y = next_y
+        else
+          can_go = false
+        end
+        
+      end
+    end
+    can_go
   end
   
   

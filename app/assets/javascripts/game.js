@@ -77,14 +77,20 @@ function go_to(x,y)
     var end = graph.nodes[x+offsetX][y+offsetY];
     
     var result = astar.search(graph.nodes, start, end);
+    
     if(result.length != 0)
     {
-             
+         path = "";
+         for(var i = 0; i < result.length ; i++)
+             {
+                 path += (result[i].x-offsetX)+";"+(result[i].y-offsetY)+"/";
+             }
+           
         $.ajax({
             url:"/player/update_position.html",
             type: "PUT",
             dataType: "html",
-            data: "x="+x+"&y="+y,
+            data: "x="+x+"&y="+y+"&path="+path,
             success: function(data) {
                 $("#map").html(data);
                 posx = x;
@@ -167,7 +173,7 @@ function show_path_to(destx,desty)
     var end = graph.nodes[destx+offsetX][desty+offsetY];
     
     var result = astar.search(graph.nodes, start, end);
-     
+    
     for(var i = 0; i < result.length ; i++)
     {
         $("#pos"+(result[i].pos.x-offsetX)+"I"+(result[i].pos.y-offsetY)).attr("style","opacity:0.8");

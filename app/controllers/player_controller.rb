@@ -16,9 +16,11 @@ class PlayerController < ApplicationController
 
     
     #TODO Check with A* Algorithm if the player can move
-    if(!params[:x].blank? && !params[:y].blank? )
-        @player_connected.posx = params[:x]
-        @player_connected.posy = params[:y]
+    
+    
+    if(!params[:x].blank? && !params[:y].blank? && @player_connected.can_go(params[:path]) )
+        @player_connected.posx = params[:x].to_i
+        @player_connected.posy = params[:y].to_i
         @player_connected.save
         
     end
