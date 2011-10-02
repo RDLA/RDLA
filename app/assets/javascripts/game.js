@@ -4,6 +4,22 @@ $(function(){
    
     if(window.location.pathname == '/jeu')
     {
+        hide_onglets = null
+        // Show and hide onglet
+         $("#right_side").hide();
+        $("#right_side, #onglets, .player").livequery("mouseover",function()
+        {
+             window.clearTimeout(hide_onglets);
+            $("#right_side").show();
+        });
+        $("#right_side, #onglets, .player").livequery("mouseout",function()
+        {
+            hide_onglets = window.setTimeout(function(){
+            $("#right_side").hide();    
+            },3000);
+           
+        });
+        
         $.getJSON("/player/current_position.json",function(player){
               
             posx =  parseInt(player.posx,10);
@@ -27,8 +43,19 @@ $(function(){
                 data: "description="+$("#update_description").val()               
             });
         });
+        
+        $(".player").livequery("mouseover", function(){
             
-    
+            if($(this).attr("id").substr(0,6) == "player")
+            {
+                 window.clearTimeout(hide_onglets);
+                playerId = $(this).attr("id").substring(6);
+             
+                $.get("player/players/"+playerId, function(data){
+                    $("#right_side").html(data);
+                });
+            }
+        })
         $("#map div").livequery("click",function(){
             
             if($(this).attr("id").substr(0,6) == "player")

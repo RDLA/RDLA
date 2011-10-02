@@ -9,7 +9,7 @@
           <% end %>
           <% unless players["#{x};#{y}"].blank? %>
             <% player = players["#{x};#{y}"] %>
-            
+            <% css_for_field = "#{css_for_field} player" %>
             <div id="player<%= player.id %>" class="<%= css_for_field  %>">
             <%= image_tag("/assets/icons/rabbit.png", :title => player.name) %>
            </div>
