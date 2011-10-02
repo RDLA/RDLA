@@ -64,9 +64,7 @@ class Admin::TerraformingsController < Admin::AreaController
     
     posy = @minimap_terraformings.collect{|t| t.posy}
     @posy_min = posy.min
-    @minimap_height = posy.max - posy.min + 1
-    
-    
+    @minimap_height = posy.max - posy.min + 1  
     
   end
 
