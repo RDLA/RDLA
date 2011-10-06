@@ -1,0 +1,5 @@
+<% content_for :section, :weapons %>
+<h1>Edition de l'arme <%= @weapon.name %></h1>
+<%= form_for @weapon, :as => :weapon, :url => admin_weapon_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :button => 'Modifier'} %>
+<% end %>

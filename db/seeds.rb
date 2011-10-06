@@ -30,4 +30,13 @@ map = Map.find_or_initialize_by_name("Aurorea")
 map.default_field = field if map.default_field.blank?
 map.save
 
+# Default Weapons: Fist
+weapon = Item::Weapon.find_or_initialize_by_name("Poing")
+weapon.power_melee = 4
+weapon.power_melee_step = 0
+weapon.dexterity = 0
+weapon.hands_number = 1
+weapon.critical_rate = 1.25
+weapon.price = 0
+weapon.save
 

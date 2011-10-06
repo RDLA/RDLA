@@ -1,0 +1,39 @@
+<% #locals: f and button %>
+<% if f.object.errors.any? %>  
+  <div id="errorExplanation">  
+    <p><%= pluralize(f.object.errors.count, "erreur") %> a été rencontrée:</p>  
+    <dl>  
+    <% f.object.errors.full_messages.each do |msg| %>  
+      <dt><%= msg %></dt>  
+    <% end %>  
+    </dl>  
+  </div>  
+  <% end %>  
+
+<p>
+  <%= f.label :name, "Nom" %>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :power_melee, "Puissance Mêlée" %>
+  <%= f.number_field :power_melee %>
+</p>
+<p>
+  <%= f.label :power_melee_step, "Puissance Seuil" %>
+  <%= f.number_field :power_melee_step %>
+</p>
+<p>
+  <%= f.label :dexterity, "Dextérité" %>
+  <%= f.number_field :dexterity %>
+</p>
+<p>
+  <%= f.label :hands_number, "Mains" %>
+  <%= f.number_field :hands_number %>
+</p>
+<p>
+  <%= f.label :critical_rate, "Critique" %>
+  <%= f.number_field :critical_rate, :step => 0.25 %>
+</p>
+<p>
+  <%= f.submit :value => button %>
+</p>

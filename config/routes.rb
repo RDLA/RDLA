@@ -19,7 +19,7 @@ RDLA::Application.routes.draw do
   
 
   namespace :admin do
-    resources :maps, :users, :players, :feedbacks, :fields
+    resources :maps, :users, :players, :feedbacks, :fields, :weapons
     resources :terraformings, :only => [:index, :create] do
       collection do
         put :update_position

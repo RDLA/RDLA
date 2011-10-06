@@ -16,6 +16,7 @@
     <dd <%= "class='current'" if (yield :section) == 'home' %>><%= link_to "Accueil Administration", admin_root_path%></dd> 
     <dt>Production</dt>
     <dd <%= "class='current'" if (yield :section) == 'feedbacks' %>><%= link_to "Feedback", admin_feedbacks_path%></dd> 
+    <dd <%= "class='current'" if (yield :section) == 'weapons' %>><%= link_to "Armes", admin_weapons_path%></dd> 
     <dt>Utilisateurs</dt>
     <dd <%= "class='current'" if (yield :section) == 'users' %>><%= link_to "Comptes", admin_users_path%></dd> 
     <dd <%= "class='current'" if (yield :section) == 'players' %>><%= link_to "Personnages", admin_players_path%></dd> 

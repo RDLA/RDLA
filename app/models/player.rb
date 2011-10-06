@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
   belongs_to :map
   belongs_to :user
   
+  has_many :inventories
+  
   validates :description, :length => { :maximum => 250 }
   validates :power, :presence => true, :numericality => true
   validates :power_max, :presence => true, :numericality => true

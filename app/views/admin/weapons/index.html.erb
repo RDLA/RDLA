@@ -1,0 +1,31 @@
+<% content_for :section, :weapons %>
+<h1>Liste des armes</h1>
+
+
+<div><%= link_to "Nouvelle Arme", new_admin_weapon_path %></div>
+<% unless @weapons.empty? %>
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>P Mêlée</th>
+    <th>P Seuil</th>
+    <th>Dextérité</th>
+    <th>Mains</th>
+    <th>Critique</th>
+    <th style="width:1px;white-space:nowrap;">Actions</th>
+  </tr>
+<% @weapons.each do |weapon|  %>
+  <tr  class="<%= cycle("darker", "brighter") -%>">
+    <td><%= weapon.name %></td>
+    <td><%= weapon.power_melee %></td>
+    <td><%= weapon.power_melee_step %></td>
+    <td><%= weapon.dexterity %></td>
+    <td><%= weapon.hands_number %></td>
+    <td><%= weapon.critical_rate %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_weapon_path(weapon.id) %> - <%= link_to "Supprimer", admin_weapon_path(weapon.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+  </tr>
+<%  end %>
+</table>
+<% else %>
+  Aucun plan.
+<% end %>
