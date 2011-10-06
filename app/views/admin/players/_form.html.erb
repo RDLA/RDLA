@@ -40,8 +40,20 @@
   <%= f.number_field :action,:size => 3, :step => 1 %> / <%= f.number_field :action_max,:size => 3, :step => 1 %>
 </p>
 <p>
+  <%= f.label :life_point, "Point de vie:" %>
+  <%= f.number_field :life_point,:size => 3, :step => 1 %> / <%= f.number_field :life_point_max,:size => 3, :step => 1 %>
+</p>
+<p>
   <%= f.label :power, "Puissance:" %>
   <%= f.number_field :power,:size => 3, :step => 1 %> / <%= f.number_field :power_max,:size => 3, :step => 1 %>
+</p>
+<p>
+  <%= f.label :dexterity, "Dextérité:" %>
+  <%= f.number_field :dexterity,:size => 3, :step => 1 %> 
+</p>
+<p>
+  <%= f.label :adroitness, "Habileté:" %>
+  <%= f.number_field :adroitness,:size => 3, :step => 1 %> 
 </p>
 <p>
   <%= f.label :constitution, "Constitution:" %>

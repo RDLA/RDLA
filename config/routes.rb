@@ -14,6 +14,10 @@ RDLA::Application.routes.draw do
       collection do
         put :update_description
       end
+      member do
+        get :attack_player
+      end
+      
     end
   end
   

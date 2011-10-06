@@ -1,0 +1,15 @@
+<div style="font-family: Nunito; font-size: medium;margin:15px;">
+<p>
+  
+<% @error.each do |e| -%>
+  Erreur: <%= e %><br />
+<% end %>
+<% @report.each do |r| -%>
+  <%= r %><br />
+<% end %>
+  </p>  
+  <hr />
+  <p style="text-align:center;">
+  <span class="go_profil" style="cursor:pointer;">Retour</span>
+  </p>
+</div>

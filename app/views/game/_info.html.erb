@@ -6,6 +6,25 @@
       <textarea id='update_description' cols='25' rows='5'><%= player.description %></textarea>
     </p>
   <div id="caracs">
+    
+    <p class="bar">
+      
+      <canvas id="life_point" width="10" height="100" title="<%= player.life_point %> / <%= player.life_point_max %>">
+
+      </canvas>
+      <script type="text/javascript">
+        
+        var exemple = document.getElementById('life_point');
+        var contexte = exemple.getContext('2d');
+        contexte.fillStyle = "rgba(0,0,0,0.5)";
+        contexte.fillRect(0, 0, 10, 100 - <%= player.get_life_point_bar.to_s  %> );
+        contexte.fillStyle = "rgba(153,0,0,0.5)";
+        contexte.fillRect(0, 100 - <%= player.get_life_point_bar.to_s  %>, 10, <%= player.get_life_point_bar.to_s  %> );
+      </script><br />
+      Point de vie
+      
+    </p>
+    
     <p class="bar">
       
       <canvas id="power" width="10" height="100" title=" <%= player.power %> / <%= player.power_max %>">
@@ -17,7 +36,7 @@
         var contexte = exemple.getContext('2d');
         contexte.fillStyle = "rgba(0,0,0,0.5)";
         contexte.fillRect(0, 0, 10, 100 - <%= player.get_power_bar.to_s  %> );
-        contexte.fillStyle = "rgba(153,0,0,0.5)";
+        contexte.fillStyle = "rgba(0,0,153,0.5)";
         contexte.fillRect(0, 100 - <%= player.get_power_bar.to_s  %>, 10, <%= player.get_power_bar.to_s  %> );
       </script><br />
      Puissance
@@ -43,12 +62,14 @@
     </p>
     
     <p>Constitution: <%= player.constitution %></p>
+    <p>Dextérité: <%= player.dexterity %></p>
+    <p>Habileté: <%= player.adroitness %></p>
   </div>
 
 <% else %>
 
 <% if player.get_distance_with(session[:player_connected].to_i) == 1 %>
-  <p id="actions">Attaque au corps à corps</p>
+  <p id="actions"><span id="attack_cac" style="cursor:pointer">Attaque au corps à corps</span></p>
   <% end %>
   <p id="description"><strong>Description physique: </strong>
   <br /><%= player.description %>

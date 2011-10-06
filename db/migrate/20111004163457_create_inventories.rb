@@ -4,8 +4,9 @@ class CreateInventories < ActiveRecord::Migration
       t.integer :item_id
       t.integer :player_id
       t.integer :quantity
-
+      t.string :location, :default => "bag"
       t.timestamps
     end
+    
   end
 end

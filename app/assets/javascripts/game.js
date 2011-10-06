@@ -1,21 +1,22 @@
 var posx = null;
 var posy = null;
 $(function(){
-   
+    // 
     if(window.location.pathname == '/jeu')
     {
+        selectedPlayer = null
         hide_onglets = null
         // Show and hide onglet
-         $("#right_side").hide();
+        $("#right_side").hide();
         $("#right_side, #onglets, .player").livequery("mouseover",function()
         {
-             window.clearTimeout(hide_onglets);
+            window.clearTimeout(hide_onglets);
             $("#right_side").show();
         });
         $("#right_side, #onglets, .player").livequery("mouseout",function()
         {
             hide_onglets = window.setTimeout(function(){
-            $("#right_side").hide();    
+                $("#right_side").hide();    
             },3000);
            
         });
@@ -28,11 +29,30 @@ $(function(){
             init();
                
         });
-        $("#info").click(function(){
+        
+        $("#info, .go_profil").livequery("click",function(){
             $.get("player/players/-1", function(data){
                 $("#right_side").html(data);
             });
+            selectedPlayer = null;
         });
+        $("#attack_cac").livequery("click", function(){
+            
+            if(selectedPlayer != null)
+            {
+                
+                $.get("/player/players/"+selectedPlayer+"/attack_player", 
+                { type: "melee" },
+                function(data){
+                    
+                    $("#right_side").html(data);
+                    $("#right_side").show();  
+                    
+                });
+            }
+            
+            
+        })
                 
         
         $("#update_description").livequery("keyup",function(){
@@ -48,9 +68,9 @@ $(function(){
             
             if($(this).attr("id").substr(0,6) == "player")
             {
-                 window.clearTimeout(hide_onglets);
+                window.clearTimeout(hide_onglets);
                 playerId = $(this).attr("id").substring(6);
-             
+                selectedPlayer = playerId;
                 $.get("player/players/"+playerId, function(data){
                     $("#right_side").html(data);
                 });
@@ -107,11 +127,11 @@ function go_to(x,y)
     
     if(result.length != 0)
     {
-         path = "";
-         for(var i = 0; i < result.length ; i++)
-             {
-                 path += (result[i].x-offsetX)+";"+(result[i].y-offsetY)+"/";
-             }
+        path = "";
+        for(var i = 0; i < result.length ; i++)
+        {
+            path += (result[i].x-offsetX)+";"+(result[i].y-offsetY)+"/";
+        }
            
         $.ajax({
             url:"/player/update_position.html",

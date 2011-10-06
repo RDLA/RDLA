@@ -1,11 +1,14 @@
+#encoding: utf-8
 class Player < ActiveRecord::Base
   attr_accessible :map, :user, :name, :posx, :posy, :map_id, :user_id, :description,
-    :power, :power_max,:action, :action_max, :turn, :constitution
+    :power, :power_max,:action, :action_max,:dexterity, :adroitness,
+    :life_point, :life_point_max, :turn, :turn_action,  :constitution
   
   belongs_to :map
   belongs_to :user
   
   has_many :inventories
+  accepts_nested_attributes_for :inventories
   
   validates :description, :length => { :maximum => 250 }
   validates :power, :presence => true, :numericality => true
@@ -13,10 +16,34 @@ class Player < ActiveRecord::Base
   validates :action, :presence => true, :numericality => true
   validates :action_max, :presence => true, :numericality => true
   
+  #Auto_update task
   after_initialize do
-    
     update_power() if self.turn + 1.minute < Time.now
     update_action() if self.turn_action + 1.minute < Time.now
+    
+  end
+  def dice(x = 1,y = 3,z = 0)
+    #Simulate a dice in order to get XDY + Z
+    result = 0
+    x.times do
+      result += Random.rand(y)+1
+    end
+    result += z
+    
+    result
+  end
+  
+  def get_weapon()
+    unless(self.inventories.right_hand.blank?)
+      self.inventories.right_hand
+    else
+      unless(self.inventories.left_hand.blank?)
+        self.inventories.left_hand
+      else
+        Item::Weapon.find_by_name("Poing")
+      end
+      
+    end
   end
   
   def get_power_bar
@@ -25,6 +52,10 @@ class Player < ActiveRecord::Base
   def get_action_bar
     self.action * 100 / self.action_max
   end
+    def get_life_point_bar
+    self.life_point * 100 / self.life_point_max
+  end
+  
   
   def update_power
     #Update the power according to the previous time
@@ -52,6 +83,7 @@ class Player < ActiveRecord::Base
     end
 
   end
+    
   def get_distance_with(player_id)
     player = Player.find player_id rescue self
     [(player.posx-self.posx).abs, (player.posy-self.posy).abs ].max
@@ -90,6 +122,64 @@ class Player < ActiveRecord::Base
       end
     end
     can_go
+  end
+  
+  def melee_fight_with(opponent)
+    #Return [error, report]
+    error = []
+    report = []
+    #Check if the player is not too far
+    unless(self.get_distance_with(opponent.id) <= 1)
+      error << "Vous êtes trop loin du joueur!"
+    else
+      #Calculate the opponent defense malus
+      defense_malus = (opponent.power_max - opponent.power) / opponent.power_max * 10 + (opponent.life_point_max - opponent.life_point) / opponent.life_point_max * 10
+      weapon = self.get_weapon()
+      #Check if the player can use his weapon
+      unless(self.power >= weapon.power_melee && self.action >= 1 )
+        error << "Vous n'êtes pas assez en forme!" 
+      else
+        malus_dice = dice(1,100)
+        report << "Rapport de combat avec #{opponent.name}"
+        report << "Test de malus de défense opposant: #{malus_dice}/#{defense_malus}"
+        
+        if(malus_dice > defense_malus)
+          report << "#{opponent.name} est prêt à se défendre!"
+        #Normal defense
+         
+          attack_dice =  dice(self.dexterity)
+          defense_dice =  dice([opponent.dexterity, opponent.adroitness].max)
+          report << "Vous effectuez une passe d'arme avec #{opponent.name}: (#{attack_dice}/#{defense_dice})"
+          if attack_dice > defense_dice
+            report << "Vous touchez #{opponent.name}!"  
+            attack_success = true
+          else
+            report << "Vous ratez #{opponent.name}!"  
+            attack_success = false
+          end
+          
+        else
+        #Opponent must lose.
+        report << "#{opponent.name} est surpris!"  
+          attack_success = true
+        end
+        
+        if attack_success
+          
+          damage = (0.1*self.power + weapon.power_melee - opponent.constitution).round
+          report << "#{opponent.name} perd #{damage} points de vie!"  
+          opponent.life_point = [ opponent.life_point-damage, 0 ].max
+          report << "#{opponent.name} s'effondre sur le sol!" if opponent.life_point == 0  
+        end
+        
+        self.power = self.power - weapon.power_melee
+        self.action = self.action - 1
+        self.save
+        opponent.save
+        
+      end
+    end
+    [error, report]
   end
   
   
