@@ -46,6 +46,7 @@ GEM
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
+    errorapp_notifier (7.0.1)
     erubis (2.7.0)
     execjs (1.2.4)
       multi_json (~> 1.0)
@@ -129,6 +130,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails
   devise
+  errorapp_notifier
   heroku
   jquery-rails
   pg
