@@ -2,7 +2,8 @@
 class Player < ActiveRecord::Base
   attr_accessible :map, :user, :name, :posx, :posy, :map_id, :user_id, :description,
     :power, :power_max,:action, :action_max,:dexterity, :adroitness,
-    :life_point, :life_point_max, :turn, :turn_action,  :constitution
+    :life_point, :life_point_max, :turn, :turn_action,  :constitution,
+    :visual_acuity
   
   belongs_to :map
   belongs_to :user

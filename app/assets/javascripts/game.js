@@ -201,8 +201,8 @@ function generate_grid()
     graph = new Graph(grid);
         
 
-      
-    start = graph.nodes[5][5];
+    visual_acuity = parseInt($("#visual_acuity").val(),10);
+    start = graph.nodes[visual_acuity][visual_acuity];
 }
 
 function show_path_to(destx,desty)
@@ -212,8 +212,8 @@ function show_path_to(destx,desty)
     $("#map div").css("opacity","1")
     
     
-    offsetX =  5 - posx;
-    offsetY =  5 - posy;
+    offsetX =  visual_acuity - posx;
+    offsetY =  visual_acuity - posy;
     
    
     

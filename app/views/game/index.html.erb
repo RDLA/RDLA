@@ -1,5 +1,6 @@
 <div id="left_side">
-  <div id="map">
+  <input type="hidden" id="visual_acuity" value="<%= @player_connected.visual_acuity %>" />
+  <div id="map" style="width:<%= 72*(@player_connected.visual_acuity*2+1)  %>px;height:<%= 72*(@player_connected.visual_acuity*2+1)  %>px;">
    <%= render :partial => "map", :locals => { :players => @players, :player_connected => @player_connected, :fields => @fields}  %>
   </div>
   <div id="chat">

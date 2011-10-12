@@ -1,6 +1,6 @@
 
-<% ((player_connected.posy-5)..(player_connected.posy+5)).each do|y| %>
-      <% ((player_connected.posx-5)..(player_connected.posx+5)).each do|x| %>
+<% ((player_connected.posy-player_connected.visual_acuity)..(player_connected.posy+player_connected.visual_acuity)).each do|y| %>
+      <% ((player_connected.posx-player_connected.visual_acuity)..(player_connected.posx+player_connected.visual_acuity)).each do|x| %>
           
           <% if fields["#{x};#{y}"].blank?  %>
               <% css_for_field = "field#{player_connected.map.default_field_id}" %>
