@@ -8,3 +8,4 @@ nbproject/*
 config/database.yml
 db/schema.rb
 .rvmrc
+Gemfile.lock
