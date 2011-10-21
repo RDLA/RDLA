@@ -21,6 +21,7 @@
 # Default field
 field = Field.find_or_initialize_by_filename("Herbe.png")
 field.category_id = Category.find 1 
+field.color = "green"
 field.save
 
 

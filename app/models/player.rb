@@ -1,4 +1,5 @@
 #encoding: utf-8
+require "RPG"
 class Player < ActiveRecord::Base
   attr_accessible :map, :user, :name, :posx, :posy, :map_id, :user_id, :description,
     :power, :power_max,:action, :action_max,:dexterity, :adroitness,
@@ -23,16 +24,7 @@ class Player < ActiveRecord::Base
     update_action() if self.turn_action + 1.minute < Time.now
     
   end
-  def dice(x = 1,y = 3,z = 0)
-    #Simulate a dice in order to get XDY + Z
-    result = 0
-    x.times do
-      result += Random.rand(y)+1
-    end
-    result += z
-    
-    result
-  end
+  include RPG
   
   def get_weapon()
     unless(self.inventories.right_hand.blank?)
