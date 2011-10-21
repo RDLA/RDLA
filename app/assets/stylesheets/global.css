@@ -1,6 +1,7 @@
 html, body{ padding:0; margin:0; height:100%;}
 body
 {
-    background:url(/assets/backtest.jpg) right fixed;
+    background:url(/assets/backtest.jpg) black top fixed no-repeat;
+    background-size: cover;
     font-family: 'Nunito', serif;
 }
