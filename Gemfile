@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.1'
 gem 'rack', '1.3.3'
 gem 'jquery-rails'
-gem 'pg'
+
 
 gem 'devise'
 
@@ -17,8 +17,11 @@ group :assets do
   gem 'uglifier'
 end
 
-group :developpement, :test do
-	gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+group :development, :test do
+  gem 'sqlite3'
 end
 group :test do
   # Pretty printed test output
