@@ -17,6 +17,9 @@ group :assets do
   gem 'uglifier'
 end
 
+group :developpement, :test do
+	gem 'sqlite3'
+end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false

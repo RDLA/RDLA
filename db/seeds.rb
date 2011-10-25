@@ -41,3 +41,10 @@ weapon.critical_rate = 1.25
 weapon.price = 0
 weapon.save
 
+#Default Admin if didn't exist
+if User::Admin.count == 0
+	admin = User::Admin.new
+	admin.email = "admin@rdla.fr"
+	admin.password = "azerty"
+	admin.save
+end
