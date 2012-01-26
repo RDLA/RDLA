@@ -7,7 +7,14 @@
           <% else %>
               <% css_for_field = "field#{fields["#{x};#{y}"].field_id}" %>
           <% end %>
-          <% unless players["#{x};#{y}"].blank? %>
+          
+          <% if !buildings["#{x};#{y}"].blank?%>
+           <% building = buildings["#{x};#{y}"] %>
+           <% css_for_field = "#{css_for_field} building" %>
+           <div id="building<%= building.id %>" class="<%= css_for_field  %>">
+            <%= image_tag("/assets/buildings/#{building.icon_url}", :title => building.name) %>
+           </div>
+          <% elsif !players["#{x};#{y}"].blank? %>
             <% player = players["#{x};#{y}"] %>
             <% css_for_field = "#{css_for_field} player" %>
             <div id="player<%= player.id %>" class="<%= css_for_field  %>">

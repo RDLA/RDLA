@@ -1,0 +1,26 @@
+<% content_for :section, :weapons %>
+<h1>Liste des bâtiments</h1>
+
+
+<div><%= link_to "Nouveau Bâtiment", new_admin_building_path %></div>
+<% unless @buildings.empty? %>
+<table>
+  <tr>
+  	<th>Icone</th>
+    <th>Nom</th>
+    <th>Position</th>
+    
+    <th style="width:1px;white-space:nowrap;">Actions</th>
+  </tr>
+<% @buildings.each do |building|  %>
+  <tr  class="<%= cycle("darker", "brighter") -%>">
+    <td><%= image_tag "buildings/#{building.icon_url}" %></td>
+    <td><%= building.name %></td>
+    <td><%= "[#{building.posx};#{building.posy}] #{building.map.name}"  unless building.map.blank? %></td>
+    <td style="width:1px;white-space:nowrap;"><%= link_to "Editer", edit_admin_building_path(building.id) %> - <%= link_to "Supprimer", admin_building_path(building.id), :method => :delete, :confirm => "Supprimer cet enregistrement?" %></td>
+  </tr>
+<%  end %>
+</table>
+<% else %>
+  Aucun bâtiment.
+<% end %>

@@ -22,6 +22,7 @@
     <dd <%= "class='current'" if (yield :section) == 'players' %>><%= link_to "Personnages", admin_players_path%></dd> 
     <dt>Terre à fromage</dt>
     <dd <%= "class='current'" if (yield :section) == 'maps' %>><%= link_to "Plans", admin_maps_path%></dd> 
+    <dd <%= "class='current'" if (yield :section) == 'buildings' %>><%= link_to "Bâtiments", admin_buildings_path%></dd> 
     <dd <%= "class='current'" if (yield :section) == 'fields' %>><%= link_to "Terrains", admin_fields_path%></dd> 
     <dd><%= link_to "Terraforming", admin_terraformings_path%></dd> 
   </dl> 

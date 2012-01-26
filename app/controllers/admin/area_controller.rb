@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Admin::AreaController < ApplicationController
+class Admin::AreaController < InheritedResources::Base
   before_filter :authenticate_admin!
   layout "administration"
   

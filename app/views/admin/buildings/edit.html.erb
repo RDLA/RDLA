@@ -1,0 +1,5 @@
+<% content_for :section, :buildings %>
+<h1>Edition du bâtiment <%= @building.name %></h1>
+<%= form_for @building, :as => :building, :url => admin_building_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :button => 'Modifier'} %>
+<% end %>

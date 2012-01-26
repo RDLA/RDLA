@@ -14,7 +14,7 @@ class GameController < ApplicationController
     
     @players = @map.get_players(@player_connected.posx, @player_connected.posy)
     @fields = @map.get_fields(@player_connected.posx, @player_connected.posy)
-    
+    @buildings = @map.get_buildings(@player_connected.posx, @player_connected.posy)
   end
   
   private

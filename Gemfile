@@ -1,11 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
-gem 'rack', '1.3.3'
+gem 'rails'
+
 gem 'jquery-rails'
 
-
+#Use for admin
 gem 'devise'
+gem 'inherited_resources'
 
 gem 'heroku'
 # Gems used only for assets and not required
